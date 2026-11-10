@@ -14,6 +14,10 @@ const primaryEmail =
   process.env.CONTACT_EMAIL || "aashraybopparaju15@gmail.com";
 const secondaryEmail =
   process.env.CONTACT_CC_EMAIL || "b.rishivarma16@gmail.com";
+const tertiaryEmail =
+  process.env.CONTACT_TERTIARY_EMAIL || "kaushalzz2008@gmail.com";
+
+const ccRecipients = [secondaryEmail, tertiaryEmail].filter(Boolean).join(",");
 
 export const siteConfig = {
   brandName: "Zeltrio",
@@ -26,8 +30,9 @@ export const siteConfig = {
   locale: "en_US",
   contactEmail: primaryEmail,
   secondaryEmail,
-  inquiryEmails: [primaryEmail, secondaryEmail] as const,
-  inquiryMailtoHref: `mailto:${primaryEmail}?cc=${encodeURIComponent(secondaryEmail)}&subject=${encodeURIComponent("Project Consultation Inquiry for Zeltrio Digital Service")}`,
+  tertiaryEmail,
+  inquiryEmails: [primaryEmail, secondaryEmail, tertiaryEmail] as const,
+  inquiryMailtoHref: `mailto:${primaryEmail}?cc=${encodeURIComponent(ccRecipients)}&subject=${encodeURIComponent("Project Consultation Inquiry for Zeltrio Digital Service")}`,
   businessCity: process.env.NEXT_PUBLIC_BUSINESS_CITY || "Hyderabad",
   businessCountry: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY || "India",
   logoPath: "/images/zeltrio-logo.jpg",

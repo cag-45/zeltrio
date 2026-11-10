@@ -112,22 +112,16 @@ export default function ContactPage() {
                   <p className="text-xs font-bold tracking-wider uppercase text-canvas/60">
                     Primary Desk Emails
                   </p>
-                  <p>
-                    <a
-                      href={`mailto:${siteConfig.contactEmail}`}
-                      className="break-all font-semibold text-zeltrio-bright transition-colors hover:text-canvas"
-                    >
-                      {siteConfig.contactEmail}
-                    </a>
-                  </p>
-                  <p>
-                    <a
-                      href={`mailto:${siteConfig.secondaryEmail}`}
-                      className="break-all font-semibold text-zeltrio-bright transition-colors hover:text-canvas"
-                    >
-                      {siteConfig.secondaryEmail}
-                    </a>
-                  </p>
+                  {siteConfig.inquiryEmails.map((email) => (
+                    <p key={email}>
+                      <a
+                        href={`mailto:${email}`}
+                        className="break-all font-semibold text-zeltrio-bright transition-colors hover:text-canvas"
+                      >
+                        {email}
+                      </a>
+                    </p>
+                  ))}
                 </div>
 
                 <div className="mt-6">

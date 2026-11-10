@@ -100,9 +100,8 @@ export function InquiryForm() {
           Request a Tailored Proposal
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate">
-          Inquiries are routed to {siteConfig.contactEmail} and{" "}
-          {siteConfig.secondaryEmail}. Our team responds personally within one
-          business day.
+          Inquiries are routed to {siteConfig.inquiryEmails.join(", ")}. Our
+          team responds personally within one business day.
         </p>
       </div>
 

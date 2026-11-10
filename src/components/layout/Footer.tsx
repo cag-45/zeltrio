@@ -79,22 +79,16 @@ export function Footer() {
                 <li>
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </li>
-                <li>
-                  <a
-                    href={`mailto:${siteConfig.contactEmail}`}
-                    className="break-all font-medium transition-colors hover:text-zeltrio-bright"
-                  >
-                    {siteConfig.contactEmail}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`mailto:${siteConfig.secondaryEmail}`}
-                    className="break-all font-medium transition-colors hover:text-zeltrio-bright"
-                  >
-                    {siteConfig.secondaryEmail}
-                  </a>
-                </li>
+                {siteConfig.inquiryEmails.map((email) => (
+                  <li key={email}>
+                    <a
+                      href={`mailto:${email}`}
+                      className="break-all font-medium transition-colors hover:text-zeltrio-bright"
+                    >
+                      {email}
+                    </a>
+                  </li>
+                ))}
                 <li className="pt-1">
                   <Link
                     href="/contact"

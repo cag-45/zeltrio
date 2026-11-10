@@ -45,8 +45,8 @@ export default function PrivacyPolicyPage() {
               {siteConfig.legalName} does not sell, rent, or trade your contact
               details or project briefs with unrelated external parties.
               Submitted information is processed solely by our team at{" "}
-              {siteConfig.contactEmail} and {siteConfig.secondaryEmail} to
-              evaluate or deliver your requested services.
+              {siteConfig.inquiryEmails.join(", ")} to evaluate or deliver your
+              requested services.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
             <p className="mt-2">
               You may request access to, correction of, or removal of any
               consultation data you previously submitted by contacting{" "}
-              {siteConfig.contactEmail} or {siteConfig.secondaryEmail}.
+              {siteConfig.inquiryEmails.join(", ")}.
             </p>
           </div>
         </div>
