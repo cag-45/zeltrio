@@ -11,16 +11,16 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function TermsOfServicePage() {
   return (
-    <section className="bg-alabaster py-16 sm:py-20">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+    <section className="bg-canvas py-16 sm:py-20">
+      <div className="mx-auto max-w-4xl px-4 text-left sm:px-6 lg:px-8">
+        <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
           Legal Information
         </p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Terms of Service
         </h1>
-        <p className="mt-4 text-sm text-muted">
-          Effective date November 2026 for {siteConfig.legalName}.
+        <p className="mt-4 text-sm font-medium text-muted">
+          Effective Date November 2026 for {siteConfig.legalName}.
         </p>
 
         <div className="mt-10 space-y-8 border-t border-rule pt-8 text-base leading-relaxed text-slate">
@@ -57,7 +57,7 @@ export default function TermsOfServicePage() {
             <p className="mt-2">
               Estimated delivery durations depend on timely feedback, access to
               domain or advertising accounts, and verification materials
-              provided by the client organization.
+              provided by the client organization or creator.
             </p>
           </div>
         </div>
@@ -65,4 +65,3 @@ export default function TermsOfServicePage() {
     </section>
   );
 }
-

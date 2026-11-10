@@ -26,11 +26,11 @@ export function EditorialImage({
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-lg border border-rule bg-stone ${aspectClass}`}
+      className={`relative w-full overflow-hidden rounded-lg border border-rule bg-surface ${aspectClass}`}
     >
       {failed ? (
         <div className="flex h-full w-full flex-col justify-between p-6 text-ink">
-          <span className="text-xs font-semibold tracking-widest uppercase text-muted">
+          <span className="text-xs font-semibold tracking-widest uppercase text-zeltrio">
             Service {index}
           </span>
           <div>
@@ -48,10 +48,9 @@ export function EditorialImage({
           priority={priority}
           sizes={sizes}
           onError={() => setFailed(true)}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
       )}
     </div>
   );
 }
-

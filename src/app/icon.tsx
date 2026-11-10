@@ -18,8 +18,8 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "9999px",
-          backgroundColor: "#06080b",
-          border: "2px solid #154380",
+          backgroundColor: "#05080f",
+          border: "2px solid #0095ff",
           color: "#ffffff",
           fontSize: 18,
           fontWeight: 700,
@@ -34,4 +34,3 @@ export default function Icon() {
     }
   );
 }
-

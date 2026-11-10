@@ -6,16 +6,18 @@ import { buildBreadcrumbSchema } from "@/lib/schema";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
+import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "About Zeltrio Digital Service",
   description:
-    "Learn how Zeltrio Digital Service unites website engineering, search visibility, digital marketing, and business automation under disciplined agency standards.",
+    "Learn how Zeltrio Digital Service unites Website Engineering, Search Visibility, Influencer and Creator Launches, Digital Marketing, and Business Automation.",
   path: "/about",
   keywords: [
     "about Zeltrio",
     "Zeltrio Digital Service",
     "digital agency standards",
+    "creator platform launch",
   ],
 });
 
@@ -29,11 +31,11 @@ export default function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-alabaster py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+            <div className="animate-hero-enter lg:col-span-7">
+              <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
                 About the Agency
               </p>
               <h1 className="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
@@ -47,16 +49,16 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="flex flex-col items-center rounded-2xl border border-obsidian-soft bg-obsidian p-10 text-center text-porcelain">
+            <div className="animate-hero-enter lg:col-span-5">
+              <div className="flex flex-col items-start rounded-2xl border border-obsidian-border bg-obsidian p-8 text-left text-canvas shadow-lg sm:p-10">
                 <BrandLogo size="hero" priority />
                 <h2 className="mt-6 text-2xl font-bold tracking-tight">
                   {siteConfig.legalName}
                 </h2>
-                <p className="mt-2 text-sm text-porcelain/75">
+                <p className="mt-2 text-sm text-canvas/75">
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </p>
-                <div className="mt-6 flex flex-wrap justify-center gap-5 border-t border-porcelain/15 pt-6 text-xs font-semibold tracking-widest uppercase text-porcelain/70">
+                <div className="mt-6 flex w-full flex-wrap gap-5 border-t border-obsidian-border pt-6 text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
                   {siteConfig.taglineParts.map((pillar) => (
                     <span key={pillar}>{pillar}</span>
                   ))}
@@ -67,33 +69,32 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-alabaster py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <section className="bg-surface py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+            <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
               Operating Principles
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              How Zeltrio approaches every client engagement
+              How Zeltrio Approaches Every Client Engagement
             </h2>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {companyPrinciples.map((principle) => (
-              <article
-                key={principle.number}
-                className="rounded-xl border border-rule bg-porcelain p-7 sm:p-8"
-              >
-                <span className="text-xs font-semibold tracking-widest uppercase text-muted">
-                  Principle {principle.number}
-                </span>
-                <h3 className="mt-3 text-xl font-bold tracking-tight text-ink">
-                  {principle.title}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-slate">
-                  {principle.description}
-                </p>
-              </article>
+            {companyPrinciples.map((principle, idx) => (
+              <RevealOnScroll key={principle.number} delayMs={idx * 80}>
+                <article className="h-full rounded-xl border border-rule bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-zeltrio/50 hover:shadow-md sm:p-8">
+                  <span className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+                    Principle {principle.number}
+                  </span>
+                  <h3 className="mt-3 text-xl font-bold tracking-tight text-ink">
+                    {principle.title}
+                  </h3>
+                  <p className="mt-3 text-base leading-relaxed text-slate">
+                    {principle.description}
+                  </p>
+                </article>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
@@ -103,4 +104,3 @@ export default function AboutPage() {
     </>
   );
 }
-

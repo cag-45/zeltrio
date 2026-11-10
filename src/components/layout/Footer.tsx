@@ -7,25 +7,27 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-obsidian-soft bg-obsidian text-porcelain">
-      <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+    <footer className="border-t border-obsidian-border bg-obsidian text-canvas">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Link href="/" className="inline-flex items-center gap-4">
               <BrandLogo size="md" />
-              <div>
-                <p className="text-xl font-bold tracking-tight text-porcelain">
+              <div className="text-left">
+                <p className="text-xl font-bold tracking-tight text-canvas">
                   {siteConfig.brandName}
                 </p>
-                <p className="text-sm text-porcelain/70">Digital Service</p>
+                <p className="text-sm font-medium text-zeltrio-bright">
+                  Digital Service
+                </p>
               </div>
             </Link>
 
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-porcelain/75">
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-canvas/75">
               {siteConfig.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-6 text-xs font-semibold tracking-widest uppercase text-porcelain/65">
+            <div className="mt-6 flex flex-wrap items-center gap-5 text-xs font-semibold tracking-widest uppercase text-zeltrio-bright">
               {siteConfig.taglineParts.map((word) => (
                 <span key={word}>{word}</span>
               ))}
@@ -34,7 +36,7 @@ export function Footer() {
 
           <div className="grid gap-8 sm:grid-cols-3 lg:col-span-7">
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-porcelain/60">
+              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
                 Services
               </h2>
               <ul className="mt-4 space-y-3">
@@ -42,7 +44,7 @@ export function Footer() {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="text-sm text-porcelain/80 transition-colors hover:text-porcelain"
+                      className="text-sm font-medium text-canvas/85 transition-colors hover:text-zeltrio-bright"
                     >
                       {service.title}
                     </Link>
@@ -52,7 +54,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-porcelain/60">
+              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
                 Company
               </h2>
               <ul className="mt-4 space-y-3">
@@ -60,7 +62,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-porcelain/80 transition-colors hover:text-porcelain"
+                      className="text-sm font-medium text-canvas/85 transition-colors hover:text-zeltrio-bright"
                     >
                       {item.label}
                     </Link>
@@ -70,25 +72,33 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-porcelain/60">
-                Consultation
+              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
+                Inquiry Desk
               </h2>
-              <ul className="mt-4 space-y-3 text-sm text-porcelain/80">
+              <ul className="mt-4 space-y-3 text-sm text-canvas/85">
                 <li>
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </li>
                 <li>
                   <a
                     href={`mailto:${siteConfig.contactEmail}`}
-                    className="transition-colors hover:text-porcelain"
+                    className="break-all font-medium transition-colors hover:text-zeltrio-bright"
                   >
-                    Email Zeltrio Team
+                    {siteConfig.contactEmail}
                   </a>
                 </li>
                 <li>
+                  <a
+                    href={`mailto:${siteConfig.secondaryEmail}`}
+                    className="break-all font-medium transition-colors hover:text-zeltrio-bright"
+                  >
+                    {siteConfig.secondaryEmail}
+                  </a>
+                </li>
+                <li className="pt-1">
                   <Link
                     href="/contact"
-                    className="inline-block rounded border border-porcelain/25 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-porcelain transition-colors hover:border-porcelain"
+                    className="inline-flex items-center justify-center rounded-md border border-zeltrio-bright/50 bg-obsidian-soft px-4 py-2 text-xs font-semibold uppercase tracking-wider text-canvas transition-all duration-200 hover:-translate-y-0.5 hover:border-zeltrio-bright hover:bg-zeltrio"
                   >
                     Request Proposal
                   </Link>
@@ -98,16 +108,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-porcelain/15 pt-8 text-xs text-porcelain/60 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-obsidian-border pt-8 text-xs text-canvas/65 sm:flex-row sm:items-center">
           <p>
-            Copyright {currentYear} {siteConfig.legalName}. All rights reserved.
+            Copyright {currentYear} {siteConfig.legalName}. All Rights Reserved.
           </p>
           <div className="flex flex-wrap gap-6">
             {siteConfig.legalNavigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="transition-colors hover:text-porcelain"
+                className="font-medium transition-colors hover:text-canvas"
               >
                 {item.label}
               </Link>
@@ -118,4 +128,3 @@ export function Footer() {
     </footer>
   );
 }
-

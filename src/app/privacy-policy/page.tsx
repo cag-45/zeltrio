@@ -11,16 +11,16 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="bg-alabaster py-16 sm:py-20">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+    <section className="bg-canvas py-16 sm:py-20">
+      <div className="mx-auto max-w-4xl px-4 text-left sm:px-6 lg:px-8">
+        <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
           Legal Information
         </p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Privacy Policy
         </h1>
-        <p className="mt-4 text-sm text-muted">
-          Effective date November 2026 for {siteConfig.legalName}.
+        <p className="mt-4 text-sm font-medium text-muted">
+          Effective Date November 2026 for {siteConfig.legalName}.
         </p>
 
         <div className="mt-10 space-y-8 border-t border-rule pt-8 text-base leading-relaxed text-slate">
@@ -30,10 +30,10 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mt-2">
               When you submit a consultation inquiry on this website, we collect
-              your name, business email address, optional organization name,
-              selected service interest, timeline preference, and project
-              description strictly to respond to your request and prepare a
-              relevant proposal.
+              your name, business email address, optional organization or
+              creator brand name, selected service interest, timeline
+              preference, and project description strictly to respond to your
+              request and prepare a relevant proposal.
             </p>
           </div>
 
@@ -43,9 +43,10 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mt-2">
               {siteConfig.legalName} does not sell, rent, or trade your contact
-              details or project briefs with unrelated third parties. Submitted
-              information is accessed only by team members evaluating or
-              delivering your requested services.
+              details or project briefs with unrelated external parties.
+              Submitted information is processed solely by our team at{" "}
+              {siteConfig.contactEmail} and {siteConfig.secondaryEmail} to
+              evaluate or deliver your requested services.
             </p>
           </div>
 
@@ -66,8 +67,8 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mt-2">
               You may request access to, correction of, or removal of any
-              consultation data you previously submitted by contacting our
-              agency desk through the Contact page.
+              consultation data you previously submitted by contacting{" "}
+              {siteConfig.contactEmail} or {siteConfig.secondaryEmail}.
             </p>
           </div>
         </div>
@@ -75,4 +76,3 @@ export default function PrivacyPolicyPage() {
     </section>
   );
 }
-

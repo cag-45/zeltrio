@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Zeltrio Digital Service preview";
+export const alt = "Zeltrio Digital Service Preview";
 export const size = {
   width: 1200,
   height: 630,
@@ -17,9 +17,9 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f7f6f2",
+          backgroundColor: "#05080f",
           padding: "64px 72px",
-          color: "#14171c",
+          color: "#ffffff",
           fontFamily: "sans-serif",
         }}
       >
@@ -36,8 +36,8 @@ export default function OpenGraphImage() {
                 width: 56,
                 height: 56,
                 borderRadius: "9999px",
-                backgroundColor: "#06080b",
-                border: "3px solid #154380",
+                backgroundColor: "#0c1322",
+                border: "3px solid #0095ff",
                 color: "#ffffff",
                 display: "flex",
                 alignItems: "center",
@@ -49,10 +49,10 @@ export default function OpenGraphImage() {
               Z
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: 28, fontWeight: 700, color: "#14171c" }}>
+              <span style={{ fontSize: 28, fontWeight: 700, color: "#ffffff" }}>
                 Zeltrio
               </span>
-              <span style={{ fontSize: 16, color: "#5f6773" }}>
+              <span style={{ fontSize: 16, color: "#0095ff" }}>
                 Digital Service
               </span>
             </div>
@@ -61,10 +61,10 @@ export default function OpenGraphImage() {
           <span
             style={{
               fontSize: 14,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#154380",
+              color: "#0095ff",
             }}
           >
             Create Grow Go Digital
@@ -74,17 +74,17 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <div
             style={{
-              fontSize: 54,
+              fontSize: 52,
               fontWeight: 700,
-              lineHeight: 1.12,
-              color: "#14171c",
+              lineHeight: 1.14,
+              color: "#ffffff",
               maxWidth: "960px",
             }}
           >
-            Websites, search visibility, digital marketing, and business automation.
+            Websites, Search Visibility, Creator Launches, and Business Automation
           </div>
-          <div style={{ fontSize: 24, color: "#434a54", maxWidth: "820px" }}>
-            Disciplined digital systems built for speed, organic discovery, and measurable client conversion.
+          <div style={{ fontSize: 24, color: "#cbd5e1", maxWidth: "840px" }}>
+            Disciplined Digital Systems Built for Speed, Organic Discovery, and Measurable Client Conversion
           </div>
         </div>
 
@@ -92,17 +92,17 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: "36px",
-            borderTop: "1px solid #dad7cd",
+            borderTop: "1px solid #1b2842",
             paddingTop: "24px",
             fontSize: 18,
             fontWeight: 600,
-            color: "#14171c",
+            color: "#ffffff",
           }}
         >
-          <span>Website development</span>
-          <span>SEO services</span>
-          <span>Digital marketing</span>
-          <span>Business automation</span>
+          <span>Website Development</span>
+          <span>SEO Services</span>
+          <span>Digital Marketing</span>
+          <span>Business Automation</span>
         </div>
       </div>
     ),
@@ -111,4 +111,3 @@ export default function OpenGraphImage() {
     }
   );
 }
-

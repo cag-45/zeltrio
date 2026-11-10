@@ -7,6 +7,7 @@ import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/schema";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { InteractiveCursor } from "@/components/ui/InteractiveCursor";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -27,7 +28,7 @@ const newsreader = Newsreader({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f6f2",
+  themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {
@@ -55,6 +56,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  verification: {
+    google: "l3KeYklYLlGSNbSSuYnfRrG-_OQEf9vYTOQc0R9zDmY",
+  },
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -80,14 +84,15 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${newsreader.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-alabaster text-ink">
+      <body className="flex min-h-screen flex-col bg-canvas text-ink">
         <JsonLd data={buildOrganizationSchema()} />
         <JsonLd data={buildWebsiteSchema()} />
+        <InteractiveCursor />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-cobalt focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-porcelain"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-zeltrio focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-canvas"
         >
-          Skip to main content
+          Skip to Main Content
         </a>
         <Header />
         <main id="main-content" className="flex-1">
@@ -100,4 +105,3 @@ export default function RootLayout({
     </html>
   );
 }
-

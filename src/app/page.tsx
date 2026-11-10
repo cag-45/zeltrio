@@ -16,6 +16,7 @@ export const metadata: Metadata = buildPageMetadata({
     "website development agency",
     "SEO services",
     "digital marketing agency",
+    "influencer and creator platform",
     "WhatsApp business automation",
   ],
 });
@@ -31,4 +32,3 @@ export default function HomePage() {
     </>
   );
 }
-

@@ -7,9 +7,12 @@ interface ServiceCardProps {
   priorityImage?: boolean;
 }
 
-export function ServiceCard({ service, priorityImage = false }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  priorityImage = false,
+}: ServiceCardProps) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-rule bg-porcelain transition-colors hover:border-ink/40">
+    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-rule bg-card transition-all duration-300 hover:-translate-y-1 hover:border-zeltrio/60 hover:shadow-[0_18px_36px_-18px_rgba(0,87,255,0.28)]">
       <div className="p-5 pb-0">
         <EditorialImage
           src={service.imagePath}
@@ -21,20 +24,25 @@ export function ServiceCard({ service, priorityImage = false }: ServiceCardProps
         />
       </div>
 
-      <div className="flex flex-1 flex-col justify-between p-6 sm:p-8">
+      <div className="flex flex-1 flex-col justify-between p-6 text-left sm:p-8">
         <div>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-xs font-semibold tracking-widest uppercase text-muted">
+            <span className="text-xs font-bold tracking-widest uppercase text-zeltrio">
               Service {service.index}
             </span>
             {service.badge ? (
-              <span className="rounded-full bg-sage-tint px-3 py-1 text-xs font-semibold text-sage">
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-semibold ${service.badge === "Core Service"
+                    ? "bg-sage-tint text-sage"
+                    : "bg-zeltrio-tint text-zeltrio"
+                  }`}
+              >
                 {service.badge}
               </span>
             ) : null}
           </div>
 
-          <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink">
+          <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink transition-colors group-hover:text-zeltrio">
             {service.title}
           </h3>
 
@@ -42,28 +50,34 @@ export function ServiceCard({ service, priorityImage = false }: ServiceCardProps
             {service.shortSummary}
           </p>
 
-          <ul className="mt-5 space-y-2 border-t border-rule pt-5">
+          <ul className="mt-5 space-y-2.5 border-t border-rule pt-5">
             {service.deliverables.map((item) => (
-              <li key={item.title} className="text-sm font-medium text-ink">
-                {item.title}
+              <li
+                key={item.title}
+                className="flex items-start gap-2.5 text-sm font-semibold text-ink"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zeltrio"
+                />
+                <span>{item.title}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="mt-7 flex items-center justify-between border-t border-rule pt-5">
-          <span className="text-xs font-medium text-muted">
+        <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-5">
+          <span className="text-xs font-semibold text-muted">
             {service.timeline}
           </span>
           <Link
             href={`/services/${service.slug}`}
-            className="text-sm font-semibold text-cobalt underline-offset-4 transition-colors hover:text-cobalt-dark hover:underline"
+            className="inline-flex items-center rounded-md border border-rule bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zeltrio transition-all duration-200 hover:border-zeltrio hover:bg-zeltrio hover:text-canvas"
           >
-            View service scope
+            View Service Scope
           </Link>
         </div>
       </div>
     </article>
   );
 }
-

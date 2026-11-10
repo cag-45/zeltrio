@@ -2,21 +2,22 @@
 
 import { useState, type FormEvent } from "react";
 import { servicesData } from "@/data/services";
+import { siteConfig } from "@/config/site";
 import { validateContactPayload } from "@/lib/validation";
 import type { ContactSubmissionPayload } from "@/types";
 
 const timelineOptions = [
-  "Immediate start within two weeks",
-  "Planning launch within one month",
-  "Longer project across one quarter",
-  "Exploratory scope consultation",
+  "Immediate Start Within Two Weeks",
+  "Planned Launch Within One Month",
+  "Longer Project Across One Quarter",
+  "Exploratory Scope Consultation",
 ];
 
 const initialFormState: ContactSubmissionPayload = {
   fullName: "",
   businessEmail: "",
   companyName: "",
-  serviceInterest: servicesData[0]?.title || "Website development",
+  serviceInterest: servicesData[0]?.title || "Website Development",
   projectTimeline: timelineOptions[0],
   projectDetails: "",
 };
@@ -39,7 +40,7 @@ export function InquiryForm() {
     const validation = validateContactPayload(formState);
     if (!validation.valid) {
       setFieldErrors(validation.errors);
-      setStatusMessage("Please review the highlighted fields below.");
+      setStatusMessage("Please Review the Highlighted Fields Below.");
       return;
     }
 
@@ -65,7 +66,7 @@ export function InquiryForm() {
           setFieldErrors(result.errors);
         }
         setStatusMessage(
-          result.message || "Unable to submit your inquiry right now."
+          result.message || "Unable to Submit Your Inquiry Right Now."
         );
         return;
       }
@@ -73,12 +74,12 @@ export function InquiryForm() {
       setIsSuccess(true);
       setStatusMessage(
         result.message ||
-          "Thank you. Your project inquiry has been recorded by Zeltrio Digital Service."
+          "Thank You. Your Project Inquiry Has Been Received by Zeltrio Digital Service."
       );
       setFormState(initialFormState);
     } catch {
       setStatusMessage(
-        "A network error occurred while sending your request. Please try again."
+        "A Network Error Occurred While Sending Your Request. Please Try Again."
       );
     } finally {
       setIsSubmitting(false);
@@ -89,18 +90,19 @@ export function InquiryForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-rule bg-porcelain p-7 sm:p-10"
+      className="rounded-2xl border border-rule bg-card p-6 text-left shadow-sm sm:p-10"
     >
       <div className="border-b border-rule pb-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+        <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
           Project Brief
         </p>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink">
-          Request a tailored proposal
+          Request a Tailored Proposal
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate">
-          Provide brief context about your company and priorities. Our team
-          reviews every inquiry personally within one business day.
+          Inquiries are routed to {siteConfig.contactEmail} and{" "}
+          {siteConfig.secondaryEmail}. Our team responds personally within one
+          business day.
         </p>
       </div>
 
@@ -108,7 +110,7 @@ export function InquiryForm() {
         <div>
           <label
             htmlFor="fullName"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
             Full Name
           </label>
@@ -121,11 +123,11 @@ export function InquiryForm() {
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, fullName: e.target.value }))
             }
-            placeholder="Enter your full name"
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink placeholder:text-muted"
+            placeholder="Enter Your Full Name"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
           />
           {fieldErrors.fullName ? (
-            <p className="mt-1.5 text-xs font-medium text-cobalt">
+            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
               {fieldErrors.fullName}
             </p>
           ) : null}
@@ -134,7 +136,7 @@ export function InquiryForm() {
         <div>
           <label
             htmlFor="businessEmail"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
             Business Email
           </label>
@@ -150,11 +152,11 @@ export function InquiryForm() {
                 businessEmail: e.target.value,
               }))
             }
-            placeholder="Enter your business email address"
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink placeholder:text-muted"
+            placeholder="Enter Your Email Address"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
           />
           {fieldErrors.businessEmail ? (
-            <p className="mt-1.5 text-xs font-medium text-cobalt">
+            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
               {fieldErrors.businessEmail}
             </p>
           ) : null}
@@ -163,9 +165,9 @@ export function InquiryForm() {
         <div>
           <label
             htmlFor="companyName"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
-            Company or Organization
+            Company or Creator Brand
           </label>
           <input
             id="companyName"
@@ -175,15 +177,15 @@ export function InquiryForm() {
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, companyName: e.target.value }))
             }
-            placeholder="Enter your company name"
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink placeholder:text-muted"
+            placeholder="Enter Company or Creator Name"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
           />
         </div>
 
         <div>
           <label
             htmlFor="serviceInterest"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
             Primary Service Interest
           </label>
@@ -197,15 +199,18 @@ export function InquiryForm() {
                 serviceInterest: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas"
           >
             {servicesData.map((service) => (
               <option key={service.slug} value={service.title}>
                 {service.title}
               </option>
             ))}
-            <option value="Multiple integrated services">
-              Multiple integrated services
+            <option value="Influencer and Creator Launch Package">
+              Influencer and Creator Launch Package
+            </option>
+            <option value="Multiple Integrated Services">
+              Multiple Integrated Services
             </option>
           </select>
         </div>
@@ -213,7 +218,7 @@ export function InquiryForm() {
         <div className="sm:col-span-2">
           <label
             htmlFor="projectTimeline"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
             Preferred Timeline
           </label>
@@ -227,7 +232,7 @@ export function InquiryForm() {
                 projectTimeline: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas"
           >
             {timelineOptions.map((option) => (
               <option key={option} value={option}>
@@ -240,7 +245,7 @@ export function InquiryForm() {
         <div className="sm:col-span-2">
           <label
             htmlFor="projectDetails"
-            className="block text-sm font-semibold text-ink"
+            className="block text-sm font-bold text-ink"
           >
             Project Goals and Scope
           </label>
@@ -256,11 +261,11 @@ export function InquiryForm() {
                 projectDetails: e.target.value,
               }))
             }
-            placeholder="Describe your website, search optimization, digital marketing, or automation goals"
-            className="mt-2 w-full rounded-md border border-rule bg-alabaster px-4 py-3 text-sm text-ink placeholder:text-muted"
+            placeholder="Describe Your Website, Search Optimization, Influencer Launch, Digital Marketing, or Automation Goals"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
           />
           {fieldErrors.projectDetails ? (
-            <p className="mt-1.5 text-xs font-medium text-cobalt">
+            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
               {fieldErrors.projectDetails}
             </p>
           ) : null}
@@ -270,10 +275,10 @@ export function InquiryForm() {
       {statusMessage ? (
         <div
           role="status"
-          className={`mt-6 rounded-md border px-4 py-3 text-sm ${
+          className={`mt-6 rounded-md border px-4 py-3 text-sm font-medium ${
             isSuccess
               ? "border-sage/30 bg-sage-tint text-sage"
-              : "border-cobalt/30 bg-cobalt-tint text-cobalt"
+              : "border-zeltrio/30 bg-zeltrio-tint text-zeltrio"
           }`}
         >
           {statusMessage}
@@ -281,13 +286,13 @@ export function InquiryForm() {
       ) : null}
 
       <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
-        <p className="text-xs text-muted">
-          All project inquiries remain strictly confidential.
+        <p className="text-xs font-medium text-muted">
+          All Project Inquiries Remain Strictly Confidential.
         </p>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center justify-center rounded-md bg-cobalt px-6 py-3.5 text-sm font-semibold text-porcelain transition-colors hover:bg-cobalt-dark disabled:cursor-not-allowed disabled:opacity-60"
+          className="btn-primary px-7 py-3.5 text-sm disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Submitting Inquiry" : "Submit Project Inquiry"}
         </button>
@@ -295,4 +300,3 @@ export function InquiryForm() {
     </form>
   );
 }
-

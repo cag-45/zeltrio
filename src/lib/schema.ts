@@ -14,6 +14,11 @@ export function buildOrganizationSchema() {
     logo: buildAbsoluteUrl(siteConfig.logoPath),
     image: buildAbsoluteUrl(siteConfig.logoPath),
     email: siteConfig.contactEmail,
+    contactPoint: siteConfig.inquiryEmails.map((email) => ({
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email,
+    })),
     address: {
       "@type": "PostalAddress",
       addressLocality: siteConfig.businessCity,
@@ -85,4 +90,3 @@ export function buildBreadcrumbSchema(
     })),
   };
 }
-

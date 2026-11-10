@@ -2,11 +2,11 @@ import type { CompanyPrinciple, StandardMetric } from "@/types";
 
 export const companyStory = {
   headline:
-    "Disciplined digital systems built for clarity, speed, and measurable business growth.",
+    "Disciplined Digital Systems Built for Clarity, Speed, and Measurable Business Growth",
   introduction:
-    "Zeltrio Digital Service partners with founders, growing companies, and established service teams to bridge the gap between strong visual presentation and dependable technical execution. Rather than treating websites, search optimization, digital marketing, and business automation as disconnected tasks, we engineer them as one cohesive system.",
+    "Zeltrio Digital Service partners with founders, growing companies, and aspiring creators to bridge the gap between strong visual presentation and dependable technical execution. Rather than treating websites, search optimization, digital marketing, and business automation as disconnected tasks, we engineer them as one cohesive system.",
   philosophy:
-    "Too many agencies deliver slow template websites paired with vague marketing promises. Our practice focuses on clean architecture, straightforward communication, fast loading software, and practical automation that saves your team hours every week.",
+    "Whether we are rebuilding an enterprise storefront or helping you start a new influencer and creator journey with the help of the Zeltrio platform in one go, our practice focuses on clean architecture, rapid software delivery, and practical automation that saves hours every week.",
 };
 
 export const standardMetrics: StandardMetric[] = [
@@ -15,28 +15,28 @@ export const standardMetrics: StandardMetric[] = [
     label: "Core Delivery Pillars",
     value: "Four Integrated Practices",
     detail:
-      "Website development, search engine optimization, digital marketing, and business automation aligned under one roof.",
+      "Website Development, SEO Services, Digital Marketing, and Business Automation aligned under one unified engineering roof.",
   },
   {
     code: "02",
     label: "Performance Target",
     value: "Sub Second Initial Paint",
     detail:
-      "Server rendered pages, optimized image formats, and zero heavy third party script bloat for instant visitor response.",
+      "Server rendered pages, optimized image formats, and zero heavy external script bloat for instant response on phones and tablets.",
   },
   {
     code: "03",
-    label: "Search Architecture",
-    value: "Structured From Day One",
+    label: "Creator Acceleration",
+    value: "One Go Launch Ready",
     detail:
-      "Every deployment ships with clean URLs, automated XML sitemaps, canonical metadata, and Schema markup.",
+      "Start a new influencer and creator journey with the help of the Zeltrio platform in one go with unified identity, content strategy, and web hub.",
   },
   {
     code: "04",
     label: "Response Systems",
     value: "Continuous Lead Capture",
     detail:
-      "Automated WhatsApp routing, calendar booking, and CRM synchronization ensure no client inquiry goes unanswered.",
+      "Structured inquiry intake, direct email routing, and WhatsApp forwarding ensure no prospect or brand collaboration request is missed.",
   },
 ];
 
@@ -45,7 +45,7 @@ export const companyPrinciples: CompanyPrinciple[] = [
     number: "01",
     title: "Clarity Before Decoration",
     description:
-      "Visitors evaluate credibility within seconds. We prioritize legible typography, structured page hierarchy, and precise language over visual clutter.",
+      "Visitors evaluate credibility within seconds. We prioritize legible typography, crisp alignment, and precise language over visual noise.",
   },
   {
     number: "02",
@@ -55,15 +55,14 @@ export const companyPrinciples: CompanyPrinciple[] = [
   },
   {
     number: "03",
-    title: "Unified Growth Architecture",
+    title: "Unified Growth and Creator Architecture",
     description:
-      "Your website, search visibility, paid campaigns, and WhatsApp follow up systems reinforce one another when designed together from the outset.",
+      "Your website, search visibility, influencer launch, paid campaigns, and WhatsApp follow up systems reinforce one another when designed together.",
   },
   {
     number: "04",
     title: "Transparent Ownership",
     description:
-      "Every codebase, domain record, analytics account, and automation workflow remains structured, documented, and cleanly handed over to your organization.",
+      "Every codebase, domain record, analytics account, and automation workflow remains structured, documented, and cleanly owned by your organization.",
   },
 ];
-

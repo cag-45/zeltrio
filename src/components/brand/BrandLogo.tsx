@@ -9,11 +9,14 @@ interface BrandLogoProps {
   priority?: boolean;
 }
 
-const sizeClasses: Record<NonNullable<BrandLogoProps["size"]>, { box: string; px: number; text: string }> = {
+const sizeClasses: Record<
+  NonNullable<BrandLogoProps["size"]>,
+  { box: string; px: number; text: string }
+> = {
   sm: { box: "h-10 w-10", px: 40, text: "text-sm" },
   md: { box: "h-12 w-12", px: 48, text: "text-base" },
   lg: { box: "h-20 w-20", px: 80, text: "text-2xl" },
-  hero: { box: "h-44 w-44 sm:h-52 sm:w-52", px: 208, text: "text-5xl" },
+  hero: { box: "h-40 w-40 sm:h-48 sm:w-48", px: 192, text: "text-5xl" },
 };
 
 export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
@@ -22,13 +25,19 @@ export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
 
   return (
     <div
-      className={`relative shrink-0 overflow-hidden rounded-full bg-obsidian ring-1 ring-ink/15 ${dimensions.box}`}
+      className={`relative shrink-0 overflow-hidden rounded-full bg-obsidian ring-2 ring-zeltrio-bright/55 ${
+        size === "hero" ? "animate-logo-pulse" : ""
+      } ${dimensions.box}`}
     >
       {imageUnavailable ? (
-        <div className="flex h-full w-full flex-col items-center justify-center bg-obsidian text-center text-porcelain">
-          <span className={`font-semibold tracking-tight ${dimensions.text}`}>Z</span>
+        <div className="flex h-full w-full flex-col items-center justify-center bg-obsidian text-center text-canvas">
+          <span
+            className={`font-bold tracking-tight text-zeltrio-bright ${dimensions.text}`}
+          >
+            Z
+          </span>
           {size === "hero" ? (
-            <span className="mt-1 text-xs font-medium tracking-widest uppercase text-porcelain/80">
+            <span className="mt-1 text-xs font-semibold tracking-widest uppercase text-canvas/85">
               Zeltrio
             </span>
           ) : null}
@@ -36,7 +45,7 @@ export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
       ) : (
         <Image
           src={siteConfig.logoPath}
-          alt="Zeltrio Digital Service official circular logo"
+          alt="Zeltrio Digital Service Official Logo"
           width={dimensions.px}
           height={dimensions.px}
           priority={priority}
@@ -48,4 +57,3 @@ export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
     </div>
   );
 }
-

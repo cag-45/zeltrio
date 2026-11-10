@@ -30,20 +30,20 @@ export function validateContactPayload(
   const errors: Partial<Record<keyof ContactSubmissionPayload, string>> = {};
 
   if (sanitized.fullName.length < 2) {
-    errors.fullName = "Please enter your full name.";
+    errors.fullName = "Please Enter Your Full Name.";
   }
 
   if (!EMAIL_PATTERN.test(sanitized.businessEmail)) {
-    errors.businessEmail = "Please provide a valid email address.";
+    errors.businessEmail = "Please Provide a Valid Email Address.";
   }
 
   if (sanitized.serviceInterest.length < 2) {
-    errors.serviceInterest = "Please select a primary service area.";
+    errors.serviceInterest = "Please Select a Primary Service Area.";
   }
 
   if (sanitized.projectDetails.length < 15) {
     errors.projectDetails =
-      "Please share a brief overview of at least fifteen characters.";
+      "Please Share a Brief Overview of at Least Fifteen Characters.";
   }
 
   return {
@@ -52,4 +52,3 @@ export function validateContactPayload(
     sanitized,
   };
 }
-

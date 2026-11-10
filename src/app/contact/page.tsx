@@ -4,16 +4,18 @@ import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
 import { InquiryForm } from "@/components/contact/InquiryForm";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact and Project Consultation",
   description:
-    "Start a project with Zeltrio Digital Service. Request a consultation for website development, SEO services, digital marketing, or business automation.",
+    "Start a project with Zeltrio Digital Service. Request a consultation for Website Development, SEO Services, Digital Marketing, Influencer Launches, or Business Automation.",
   path: "/contact",
   keywords: [
     "contact Zeltrio",
     "website consultation",
     "SEO agency inquiry",
+    "influencer launch agency",
     "business automation quote",
   ],
 });
@@ -49,75 +51,104 @@ export default function ContactPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-alabaster py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
+      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
+          <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
             Consultation Desk
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Tell us what you are building and where your growth needs momentum
+            Tell Us What You Are Building and Where Your Growth Needs Momentum
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate">
             Whether you require a new corporate website, technical search
-            optimization, social media campaign execution, or automated client
-            follow up systems, Zeltrio responds within one business day.
+            optimization, launching a new influencer and creator journey with
+            Zeltrio in one go, or automated client follow up systems, our team
+            responds within one business day.
           </p>
         </div>
       </section>
 
-      <section className="bg-alabaster py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-12 lg:px-8">
-          <div className="space-y-6 lg:col-span-5">
-            <div className="rounded-2xl border border-rule bg-porcelain p-7">
-              <p className="text-xs font-semibold tracking-widest uppercase text-cobalt">
-                What Happens Next
-              </p>
-              <div className="mt-5 divide-y divide-rule border-t border-rule">
-                {consultationSteps.map((item) => (
-                  <div key={item.step} className="py-4">
-                    <span className="text-xs font-semibold tracking-widest uppercase text-muted">
-                      Step {item.step}
-                    </span>
-                    <h2 className="mt-1 text-base font-bold text-ink">
-                      {item.title}
-                    </h2>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate">
-                      {item.detail}
-                    </p>
-                  </div>
-                ))}
+      <section className="bg-surface py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+          <div className="space-y-6 text-left lg:col-span-5">
+            <RevealOnScroll>
+              <div className="rounded-2xl border border-rule bg-card p-7">
+                <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+                  What Happens Next
+                </p>
+                <div className="mt-5 divide-y divide-rule border-t border-rule">
+                  {consultationSteps.map((item) => (
+                    <div key={item.step} className="py-4">
+                      <span className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+                        Step {item.step}
+                      </span>
+                      <h2 className="mt-1 text-base font-bold text-ink">
+                        {item.title}
+                      </h2>
+                      <p className="mt-1.5 text-sm leading-relaxed text-slate">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </RevealOnScroll>
 
-            <div className="rounded-2xl border border-obsidian-soft bg-obsidian p-7 text-porcelain">
-              <p className="text-xs font-semibold tracking-widest uppercase text-porcelain/65">
-                Direct Channel
-              </p>
-              <h2 className="mt-2 text-xl font-bold">
-                {siteConfig.legalName}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-porcelain/75">
-                Serving businesses from {siteConfig.businessCity},{" "}
-                {siteConfig.businessCountry} and globally through remote
-                delivery.
-              </p>
-              <div className="mt-6">
-                <a
-                  href={`mailto:${siteConfig.contactEmail}`}
-                  className="inline-flex items-center justify-center rounded-md border border-porcelain/30 px-4 py-2.5 text-xs font-semibold tracking-wider uppercase text-porcelain transition-colors hover:border-porcelain"
-                >
-                  Open Direct Email Client
-                </a>
+            <RevealOnScroll delayMs={100}>
+              <div className="rounded-2xl border border-obsidian-border bg-obsidian p-7 text-canvas">
+                <p className="text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
+                  Direct Inquiry Channels
+                </p>
+                <h2 className="mt-2 text-xl font-bold">
+                  {siteConfig.legalName}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-canvas/75">
+                  Serving businesses and creators from {siteConfig.businessCity}
+                  , {siteConfig.businessCountry} and globally through remote
+                  delivery.
+                </p>
+
+                <div className="mt-5 space-y-2 border-t border-obsidian-border pt-5 text-sm">
+                  <p className="text-xs font-bold tracking-wider uppercase text-canvas/60">
+                    Primary Desk Emails
+                  </p>
+                  <p>
+                    <a
+                      href={`mailto:${siteConfig.contactEmail}`}
+                      className="break-all font-semibold text-zeltrio-bright transition-colors hover:text-canvas"
+                    >
+                      {siteConfig.contactEmail}
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href={`mailto:${siteConfig.secondaryEmail}`}
+                      className="break-all font-semibold text-zeltrio-bright transition-colors hover:text-canvas"
+                    >
+                      {siteConfig.secondaryEmail}
+                    </a>
+                  </p>
+                </div>
+
+                <div className="mt-6">
+                  <a
+                    href={siteConfig.inquiryMailtoHref}
+                    className="btn-primary w-full px-4 py-3 text-xs uppercase tracking-wider"
+                  >
+                    Compose Direct Inquiry Email
+                  </a>
+                </div>
               </div>
-            </div>
+            </RevealOnScroll>
           </div>
 
           <div className="lg:col-span-7">
-            <InquiryForm />
+            <RevealOnScroll delayMs={80}>
+              <InquiryForm />
+            </RevealOnScroll>
           </div>
         </div>
       </section>
     </>
   );
 }
-

@@ -18,7 +18,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-panel"
-        className="rounded-md border border-rule bg-porcelain px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink"
+        className="min-h-[42px] rounded-md border border-rule bg-surface px-4 py-2 text-sm font-semibold text-ink transition-all duration-200 hover:border-zeltrio hover:text-zeltrio active:scale-95"
       >
         {isOpen ? "Close" : "Menu"}
       </button>
@@ -26,15 +26,18 @@ export function MobileMenu({ items }: MobileMenuProps) {
       {isOpen ? (
         <div
           id="mobile-navigation-panel"
-          className="absolute inset-x-0 top-full z-40 border-b border-rule bg-alabaster px-6 py-6 shadow-sm"
+          className="animate-hero-enter absolute inset-x-0 top-full z-40 border-b border-rule bg-canvas px-4 py-6 shadow-lg sm:px-6"
         >
-          <nav aria-label="Mobile navigation" className="flex flex-col gap-3">
+          <nav
+            aria-label="Mobile Navigation"
+            className="flex flex-col gap-2 text-left"
+          >
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="border-b border-rule/70 py-2.5 text-base font-medium text-ink transition-colors hover:text-cobalt"
+                className="rounded-md border-b border-rule/70 px-2 py-3 text-base font-semibold text-ink transition-colors hover:bg-surface hover:text-zeltrio"
               >
                 {item.label}
               </Link>
@@ -42,7 +45,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="mt-3 inline-flex w-full items-center justify-center rounded-md bg-cobalt px-5 py-3 text-sm font-semibold text-porcelain transition-colors hover:bg-cobalt-dark"
+              className="btn-primary mt-4 w-full px-5 py-3 text-sm"
             >
               Start a Project
             </Link>
@@ -52,4 +55,3 @@ export function MobileMenu({ items }: MobileMenuProps) {
     </div>
   );
 }
-

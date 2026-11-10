@@ -3,10 +3,10 @@ import type { ProcessPhase } from "@/types";
 export const processPhases: ProcessPhase[] = [
   {
     step: "01",
-    title: "Discovery and Audit",
+    title: "Discovery and Technical Audit",
     duration: "Days One to Three",
     summary:
-      "We review your business model, current web infrastructure, search standing, audience positioning, and operational inquiry flow before writing a single line of code.",
+      "We review your business model, creator or brand goals, current web infrastructure, search standing, and operational inquiry flow before writing a single line of code.",
     activities: [
       "Stakeholder goal alignment and commercial priority mapping",
       "Technical audit of existing domains, speed scores, and search indexing",
@@ -25,7 +25,7 @@ export const processPhases: ProcessPhase[] = [
     activities: [
       "Sitemap architecture and page by page user flow mapping",
       "Editorial layout composition with high contrast typography and structured grids",
-      "Professional copywriting tuned for human clarity and search relevance",
+      "Professional copywriting tuned for human clarity, creator launches, and search relevance",
       "Workflow diagramming for inquiry routing, booking, and CRM synchronization",
     ],
     outcome:
@@ -55,11 +55,10 @@ export const processPhases: ProcessPhase[] = [
     activities: [
       "Production deployment with clean DNS cutover and SSL verification",
       "Search console sitemap submission and indexation monitoring",
-      "Live campaign rollout, analytics tracking verification, and creative testing",
+      "Live campaign rollout, creator content execution, and analytics verification",
       "Monthly performance reviews covering speed, rankings, and lead volume",
     ],
     outcome:
       "A fast, dependable digital system actively generating and converting client demand.",
   },
 ];
-

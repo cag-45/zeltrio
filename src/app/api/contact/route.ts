@@ -8,14 +8,14 @@ export async function POST(request: Request) {
     rawBody = await request.json();
   } catch {
     return NextResponse.json(
-      { message: "Invalid request payload format." },
+      { message: "Invalid Request Payload Format." },
       { status: 400 }
     );
   }
 
   if (!rawBody || typeof rawBody !== "object") {
     return NextResponse.json(
-      { message: "Request body must be a valid JSON object." },
+      { message: "Request Body Must Be a Valid JSON Object." },
       { status: 400 }
     );
   }
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   if (!validation.valid) {
     return NextResponse.json(
       {
-        message: "Please review the highlighted fields before submitting.",
+        message: "Please Review the Highlighted Fields Before Submitting.",
         errors: validation.errors,
       },
       { status: 400 }
@@ -64,9 +64,8 @@ export async function POST(request: Request) {
   return NextResponse.json(
     {
       message:
-        "Thank you. Your inquiry has been received by Zeltrio Digital Service and will be reviewed within one business day.",
+        "Thank You. Your Inquiry Has Been Received by Zeltrio Digital Service and Will Be Reviewed Within One Business Day.",
     },
     { status: 201 }
   );
 }
-

@@ -4,22 +4,22 @@ export const servicesData: ServiceDefinition[] = [
   {
     slug: "website-development",
     index: "01",
-    title: "Website development",
-    badge: "Core service",
+    title: "Website Development",
+    badge: "Core Service",
     shortSummary:
       "Business websites, landing pages, portfolios, electronic commerce websites, and complete redesigns engineered for speed and clarity.",
     headline:
-      "High speed business websites and digital storefronts built for conversion and longevity.",
+      "High Speed Business Websites and Digital Storefronts Built for Conversion and Longevity",
     overview:
       "Your website is the central pillar of your commercial credibility. Zeltrio Digital Service designs and engineers custom business websites, targeted campaign landing pages, curated portfolios, electronic commerce storefronts, and full architectural redesigns. Every project is built on modern server rendered infrastructure with strict semantic markup, responsive layout precision, and sub second page transitions.",
     imagePath: "/images/service-website-development.jpg",
     imageAlt:
-      "Clean modern laptop resting on a solid oak studio table displaying a structured business website layout",
+      "Modern laptop resting on a solid oak studio table displaying a structured business website layout",
     idealFor: [
       "Growing companies launching an authoritative primary web presence",
       "Service firms replacing slow or outdated template websites",
       "Retail and direct consumer brands scaling electronic commerce sales",
-      "Studios and consultants showcasing portfolios with editorial polish",
+      "Studios, influencers, and consultants showcasing portfolios with editorial polish",
     ],
     deliverables: [
       {
@@ -44,12 +44,12 @@ export const servicesData: ServiceDefinition[] = [
       },
     ],
     outcomes: [
-      "Fast initial page rendering across desktop and mobile networks",
+      "Fast initial page rendering across desktop, tablet, and mobile networks",
       "Clean technical foundation structured for search engine indexing",
       "Accessible typography and intuitive navigation for every visitor",
       "Modular codebase that scales effortlessly as your team expands",
     ],
-    timeline: "Two to five weeks depending on scope",
+    timeline: "Two to Five Weeks",
     seoTitle: "Website Development Services",
     seoDescription:
       "Custom business websites, landing pages, portfolios, electronic commerce storefronts, and full redesigns engineered for speed and conversion by Zeltrio Digital Service.",
@@ -62,17 +62,17 @@ export const servicesData: ServiceDefinition[] = [
     ],
     faqs: [
       {
-        question: "What platforms and frameworks does Zeltrio use for website development?",
+        question: "What Platforms and Frameworks Does Zeltrio Use for Website Development?",
         answer:
           "We select the cleanest modern technology stack matched to your business goals, specializing in React, Next.js, TypeScript, and modern edge hosting so your site loads rapidly and remains reliable long term.",
       },
       {
-        question: "Can Zeltrio redesign our current website without losing search rankings?",
+        question: "Can Zeltrio Redesign Our Current Website Without Losing Search Rankings?",
         answer:
           "Yes. Every website redesign includes a complete URL audit, clean redirect mapping, structured metadata migration, and improved page speed so your existing search visibility is protected and strengthened.",
       },
       {
-        question: "Are the websites optimized for mobile phones and tablets?",
+        question: "Are the Websites Optimized for Mobile Phones and Tablets?",
         answer:
           "Every layout is crafted and tested across mobile screens, tablets, laptops, and large monitors to ensure crisp readability, comfortable touch targets, and reliable speed on cellular connections.",
       },
@@ -81,11 +81,11 @@ export const servicesData: ServiceDefinition[] = [
   {
     slug: "seo-services",
     index: "02",
-    title: "SEO services",
+    title: "SEO Services",
     shortSummary:
       "Keyword research, on page SEO, technical SEO, local SEO, and Google Business Profile optimization for sustained organic discovery.",
     headline:
-      "Search architecture and organic visibility systems built to capture high intent demand.",
+      "Search Architecture and Organic Visibility Systems Built to Capture High Intent Demand",
     overview:
       "Consistent organic traffic comes from aligning technical site health, search intent, and local authority. Zeltrio Digital Service executes deep keyword research, disciplined on page optimization, technical crawlability improvements, local search positioning, and complete Google Business Profile management so qualified buyers find your company first.",
     imagePath: "/images/service-seo-services.jpg",
@@ -125,7 +125,7 @@ export const servicesData: ServiceDefinition[] = [
       "Clear monthly reporting tied to impressions, rankings, and inquiries",
       "Compounding organic acquisition that reduces reliance on paid clicks",
     ],
-    timeline: "Initial audit and foundation in two weeks with ongoing monthly growth",
+    timeline: "Two Weeks Foundation and Ongoing Growth",
     seoTitle: "SEO Services and Search Optimization",
     seoDescription:
       "Comprehensive keyword research, on page SEO, technical SEO, local search positioning, and Google Business Profile optimization by Zeltrio Digital Service.",
@@ -138,17 +138,17 @@ export const servicesData: ServiceDefinition[] = [
     ],
     faqs: [
       {
-        question: "How long does search engine optimization take to show measurable progress?",
+        question: "How Long Does Search Engine Optimization Take to Show Measurable Progress?",
         answer:
           "Technical improvements and Google Business Profile updates often improve local visibility within four to six weeks, while competitive commercial keywords compound steadily over three to six months.",
       },
       {
-        question: "Do you handle both technical fixes and content optimization?",
+        question: "Do You Handle Both Technical Fixes and Content Optimization?",
         answer:
           "Yes. We combine engineering level technical improvements, such as sitemaps, schema markup, and speed optimization, with clear copy refinement and keyword structure.",
       },
       {
-        question: "Why is Google Business Profile optimization important for service businesses?",
+        question: "Why Is Google Business Profile Optimization Important for Service Businesses?",
         answer:
           "An accurately structured Google Business Profile places your verified company name, service categories, operating hours, and direct contact options directly inside local search and map results.",
       },
@@ -157,37 +157,38 @@ export const servicesData: ServiceDefinition[] = [
   {
     slug: "digital-marketing",
     index: "03",
-    title: "Digital marketing",
+    title: "Digital Marketing",
+    badge: "Creator and Brand Growth",
     shortSummary:
-      "Instagram management, social media creatives, content strategy, paid advertising, and structured lead generation campaigns.",
+      "We help you start a new influencer and creator journey with the help of the Zeltrio platform in one go alongside Instagram management, social creatives, content strategy, paid ads, and lead generation.",
     headline:
-      "Cohesive creative direction and targeted acquisition campaigns that convert attention into pipeline.",
+      "Launch Your Influencer and Creator Journey or Scale Commercial Brand Campaigns in One Go",
     overview:
-      "Effective digital marketing communicates genuine brand authority rather than fleeting noise. Zeltrio Digital Service manages end to end Instagram presence, refined social media creatives, editorial content calendars, performance paid advertising, and measurable lead generation funnels tailored to your audience.",
+      "Effective digital marketing turns attention into genuine brand authority. Whether you are an established company scaling paid acquisition or an ambitious individual ready to start a new influencer and creator journey with the help of the Zeltrio platform in one go, our team delivers cohesive Instagram management, high craft social media creatives, structured content strategy, targeted paid advertising, and measurable lead generation funnels.",
     imagePath: "/images/service-digital-marketing.jpg",
     imageAlt:
       "Creative studio worktable with printed campaign layout cards, editorial color swatches, laptop, and tablet in natural light",
     idealFor: [
-      "Consumer and service brands building consistent Instagram presence",
+      "Aspiring influencers and creators starting a complete brand and content journey in one go",
+      "Consumer and service brands building consistent Instagram authority",
       "Businesses launching targeted paid campaigns to generate qualified leads",
-      "Organizations seeking disciplined content strategy and visual consistency",
-      "Teams needing measurable lead attribution rather than vanity metrics",
+      "Organizations seeking disciplined content strategy and transparent attribution",
     ],
     deliverables: [
+      {
+        title: "Influencer and Creator Launch Journey",
+        description:
+          "We help you start a new influencer and creator journey with the help of the Zeltrio platform in one go, uniting profile positioning, visual identity, content pillars, portfolio link hubs, and monetization readiness from day one.",
+      },
       {
         title: "Instagram Management and Brand Presence",
         description:
           "Profile architecture, cohesive visual feed planning, scheduled publishing, audience engagement routines, and steady account growth.",
       },
       {
-        title: "Social Media Creatives and Art Direction",
+        title: "Social Media Creatives and Content Strategy",
         description:
-          "Crisp carousel graphics, campaign announcements, product showcases, and editorial visual templates aligned to your brand identity.",
-      },
-      {
-        title: "Content Strategy and Editorial Calendars",
-        description:
-          "Clear topic pillars designed to educate prospects, demonstrate proof of work, and guide followers toward direct consultations.",
+          "Crisp carousel graphics, campaign announcements, editorial storytelling calendars, and visual templates aligned to your brand identity.",
       },
       {
         title: "Paid Advertising and Lead Generation",
@@ -196,48 +197,48 @@ export const servicesData: ServiceDefinition[] = [
       },
     ],
     outcomes: [
-      "Consistent visual voice across every digital touchpoint",
+      "Complete influencer and creator setup launched coherently in one go",
+      "Consistent visual voice across Instagram and every digital touchpoint",
       "Qualified prospect inquiries routed directly into your sales workflow",
       "Transparent campaign attribution linking ad spend to actual leads",
-      "Engaged audience trust built through clear educational storytelling",
     ],
-    timeline: "Launch within ten days with weekly creative and campaign cadence",
-    seoTitle: "Digital Marketing and Lead Generation",
+    timeline: "Ten Days Launch with Weekly Cadence",
+    seoTitle: "Digital Marketing and Creator Launch",
     seoDescription:
-      "Instagram management, social media creatives, content strategy, paid advertising, and lead generation campaigns crafted by Zeltrio Digital Service.",
+      "Start a new influencer and creator journey with the help of the Zeltrio platform in one go, alongside Instagram management, social creatives, content strategy, paid ads, and lead generation.",
     keywords: [
+      "influencer and creator journey",
+      "Zeltrio creator platform",
       "Instagram management agency",
       "social media creatives",
-      "content strategy service",
-      "paid advertising management",
-      "digital lead generation",
+      "paid advertising and lead generation",
     ],
     faqs: [
       {
-        question: "Do you create both the visual creatives and the written captions?",
+        question: "How Does Zeltrio Help Start a New Influencer and Creator Journey in One Go?",
+        answer:
+          "We help you start a new influencer and creator journey with the help of the Zeltrio platform in one go by packaging niche positioning, Instagram profile optimization, visual creative templates, editorial launch calendars, and a dedicated portfolio or booking page under one coordinated launch plan.",
+      },
+      {
+        question: "Do You Create Both the Visual Creatives and the Written Captions?",
         answer:
           "Yes. Every monthly campaign cycle includes custom graphic layouts, clear editorial copywriting, audience positioning, and scheduled publishing calendars.",
       },
       {
-        question: "How does Zeltrio measure success in paid advertising campaigns?",
+        question: "How Does Zeltrio Measure Success in Paid Advertising Campaigns?",
         answer:
           "We configure proper conversion tracking on your website landing pages and focus optimization on qualified consultation bookings, direct inquiries, and cost per acquisition.",
-      },
-      {
-        question: "Can digital marketing run alongside website development and SEO?",
-        answer:
-          "Yes. Pairing fast conversion landing pages with targeted campaigns and strong search presence delivers stronger returns on every marketing dollar spent.",
       },
     ],
   },
   {
     slug: "business-automation",
     index: "04",
-    title: "Business automation",
+    title: "Business Automation",
     shortSummary:
       "WhatsApp automation, enquiry management, appointment booking, automated follow ups, and customer relationship management integrations.",
     headline:
-      "Reliable client communication workflows that respond immediately and eliminate manual bottlenecks.",
+      "Reliable Client Communication Workflows That Respond Immediately and Eliminate Manual Bottlenecks",
     overview:
       "Winning new clients often depends on speed and consistency of follow up. Zeltrio Digital Service builds practical business automation spanning structured WhatsApp workflows, centralized enquiry intake, automated appointment booking, timely follow up sequences, and seamless customer relationship management integrations.",
     imagePath: "/images/service-business-automation.jpg",
@@ -277,7 +278,7 @@ export const servicesData: ServiceDefinition[] = [
       "Clean customer records synced automatically with zero manual entry",
       "Reclaimed team hours focused on delivery rather than repetitive sorting",
     ],
-    timeline: "One to three weeks from workflow mapping to live deployment",
+    timeline: "One to Three Weeks",
     seoTitle: "Business Automation and WhatsApp Workflows",
     seoDescription:
       "WhatsApp automation, enquiry management, appointment booking, automated follow ups, and CRM integrations built by Zeltrio Digital Service.",
@@ -290,19 +291,19 @@ export const servicesData: ServiceDefinition[] = [
     ],
     faqs: [
       {
-        question: "Will automated WhatsApp replies feel robotic to our customers?",
+        question: "Will Automated WhatsApp Replies Feel Robotic to Our Customers?",
         answer:
           "No. We write natural, concise conversational flows tailored to your brand tone and include clear escalation to a real team member whenever custom guidance is needed.",
       },
       {
-        question: "Which customer relationship management platforms can Zeltrio integrate?",
+        question: "Which Customer Relationship Management Platforms Can Zeltrio Integrate?",
         answer:
           "We connect standard platforms including HubSpot, Zoho, Pipedrive, Salesforce, Google Workspace, Notion, and custom webhook endpoints depending on your team stack.",
       },
       {
-        question: "Can you connect our website contact forms directly to WhatsApp and calendar booking?",
+        question: "Can You Connect Website Contact Forms Directly to WhatsApp and Calendar Booking?",
         answer:
-          "Yes. When a prospective client submits an inquiry on your website, we can automatically log their details in your CRM, send a confirmation, and offer immediate consultation slots.",
+          "Yes. When a prospective client submits an inquiry on your website, we can automatically log their details, notify your team by email, and format WhatsApp forwarding or consultation booking links.",
       },
     ],
   },
@@ -311,4 +312,3 @@ export const servicesData: ServiceDefinition[] = [
 export function getServiceBySlug(slug: string): ServiceDefinition | undefined {
   return servicesData.find((service) => service.slug === slug);
 }
-
