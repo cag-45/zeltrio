@@ -40,7 +40,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <div className="hidden items-center xl:flex">
+          <div className="hidden items-center lg:flex">
             <SocialLogoButtons size="sm" />
           </div>
 

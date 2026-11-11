@@ -113,7 +113,7 @@ export function HeroSection() {
               {siteConfig.taglineParts.map((pillar, idx) => (
                 <div
                   key={pillar}
-                  className={`group ${idx === 0 ? "pr-4" : "px-4"}`}
+                  className={`group ${idx === 0 ? "pr-2.5 sm:pr-4" : "px-2.5 sm:px-4"}`}
                 >
                   <p className="text-xs font-bold tracking-widest uppercase text-zeltrio-bright transition-colors group-hover:text-gold">
                     Stage 0{idx + 1}

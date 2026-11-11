@@ -75,15 +75,20 @@ export function InteractiveCanvasBackground() {
     };
 
     const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const nextWidth = window.innerWidth;
+      const nextHeight = window.innerHeight;
+      const widthChanged = Math.abs(nextWidth - width) > 2;
+      width = nextWidth;
+      height = nextHeight;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      createParticles();
+      if (particles.length === 0 || widthChanged) {
+        createParticles();
+      }
     };
 
     const drawStaticBackdrop = (tick: number) => {

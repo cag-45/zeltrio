@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { NavigationItem } from "@/types";
 import { SocialLogoButtons } from "@/components/brand/SocialLogoButtons";
@@ -11,6 +11,23 @@ interface MobileMenuProps {
 
 export function MobileMenu({ items }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   return (
     <div className="md:hidden">
@@ -27,7 +44,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
       {isOpen ? (
         <div
           id="mobile-navigation-panel"
-          className="animate-hero-enter absolute inset-x-0 top-full z-40 border-b border-rule-strong bg-surface/95 px-4 py-6 shadow-2xl backdrop-blur-2xl sm:px-6"
+          className="animate-hero-enter absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-rule-strong bg-surface/95 px-4 py-6 shadow-2xl backdrop-blur-2xl sm:px-6"
         >
           <nav
             aria-label="Mobile Navigation"
