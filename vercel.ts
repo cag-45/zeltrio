@@ -5,11 +5,12 @@ export const config: VercelConfig = {
   cleanUrls: true,
   trailingSlash: false,
   headers: [
-    routes.cacheControl("/images/(.*)", {
-      public: true,
-      maxAge: "30 days",
-      immutable: true,
-    }),
+    routes.header("/images/(.*)", [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=2592000, immutable",
+      },
+    ]),
     routes.header("/sitemap.xml", [
       {
         key: "Cache-Control",

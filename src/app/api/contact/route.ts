@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { siteConfig } from "@/config/site";
 import { validateContactPayload } from "@/lib/validation";
 
 export async function POST(request: Request) {
@@ -34,7 +35,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL?.trim();
+  let savedToWebhook = false;
 
   if (webhookUrl) {
     try {
@@ -46,11 +48,16 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           source: "zeltrio-website",
           submittedAt: new Date().toISOString(),
+          primaryEmail: siteConfig.contactEmail,
+          ccEmails: siteConfig.ccEmails,
+          recipientEmails: siteConfig.inquiryEmails,
           ...validation.sanitized,
         }),
       });
 
-      if (!webhookResponse.ok) {
+      if (webhookResponse.ok) {
+        savedToWebhook = true;
+      } else {
         console.error(
           "Contact webhook responded with non-2xx status:",
           webhookResponse.status
@@ -61,11 +68,32 @@ export async function POST(request: Request) {
     }
   }
 
+  if (savedToWebhook) {
+    return NextResponse.json(
+      {
+        savedToWebhook: true,
+        deliveredByServer: true,
+        deliveryConfig: {
+          to: siteConfig.contactEmail,
+          cc: siteConfig.ccEmail,
+        },
+        message:
+          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Service.",
+      },
+      { status: 201 }
+    );
+  }
+
   return NextResponse.json(
     {
-      message:
-        "Thank You. Your Inquiry Has Been Received by Zeltrio Digital Service and Will Be Reviewed Within One Business Day.",
+      savedToWebhook: false,
+      deliveredByServer: false,
+      deliveryConfig: {
+        to: siteConfig.contactEmail,
+        cc: siteConfig.ccEmail,
+      },
+      message: "Inquiry Validated.",
     },
-    { status: 201 }
+    { status: 200 }
   );
 }

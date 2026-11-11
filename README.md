@@ -47,9 +47,18 @@ npm run lint
 npm run build
 ```
 
+## Inquiry Delivery & Easy Google Sheets Storage
+
+Out of the box, submitting the inquiry form delivers directly to `aashraybopparaju15@gmail.com` with CC to `b.rishivarma16@gmail.com` and `kaushalzz2008@gmail.com` via FormSubmit AJAX — on your very first live submission, click the one-time **Activate Form** link sent to `aashraybopparaju15@gmail.com`.
+
+To **also save every inquiry into a private Google Sheet with one-click WhatsApp forwarding links** (free, no database hosting required):
+1. Create a Google Sheet in Google Drive under `aashraybopparaju15@gmail.com` (and optionally share it with `b.rishivarma16@gmail.com` and `kaushalzz2008@gmail.com`).
+2. Open **Extensions → Apps Script**, paste the contents of `scripts/google-sheets-inquiries.gs`, and deploy as a **Web App** (`Execute as: Me`, `Who has access: Anyone`).
+3. Paste the generated Web App URL into `CONTACT_WEBHOOK_URL` in `.env.local` and your Vercel project's **Settings → Environment Variables**.
+
 ## Deploying to Vercel
 
 1. Push the repository to GitHub or run `npx vercel` in the project directory.
-2. Set `NEXT_PUBLIC_SITE_URL` (for example `https://zeltrio.com`) and optional `CONTACT_WEBHOOK_URL` (for CRM or WhatsApp automation intake) in your Vercel Environment Variables.
+2. Set `NEXT_PUBLIC_SITE_URL` (for example `https://zeltrio.com`) and optional `CONTACT_WEBHOOK_URL` (for Google Sheets inquiry storage and WhatsApp forwarding links) in your Vercel Environment Variables.
 3. Once deployed, submit `https://your-domain.com/sitemap.xml` inside Google Search Console.
 

@@ -22,20 +22,50 @@ const initialFormState: ContactSubmissionPayload = {
   projectDetails: "",
 };
 
+function buildDirectMailtoHref(
+  payload: ContactSubmissionPayload,
+  toEmail: string,
+  ccEmail: string
+): string {
+  const subject = `Zeltrio Project Inquiry from ${payload.fullName}`;
+  const body = [
+    `Full Name: ${payload.fullName}`,
+    `Business Email: ${payload.businessEmail}`,
+    `Company or Brand: ${payload.companyName || "Not Specified"}`,
+    `Service Interest: ${payload.serviceInterest}`,
+    `Preferred Timeline: ${payload.projectTimeline}`,
+    "",
+    "Project Goals and Scope:",
+    payload.projectDetails,
+  ].join("\n");
+
+  const ccQuery = ccEmail ? `&cc=${encodeURIComponent(ccEmail)}` : "";
+  return `mailto:${toEmail}?subject=${encodeURIComponent(subject)}${ccQuery}&body=${encodeURIComponent(body)}`;
+}
+
 export function InquiryForm() {
   const [formState, setFormState] =
     useState<ContactSubmissionPayload>(initialFormState);
+  const [honeypot, setHoneypot] = useState("");
   const [fieldErrors, setFieldErrors] = useState<
     Partial<Record<keyof ContactSubmissionPayload, string>>
   >({});
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fallbackMailtoHref, setFallbackMailtoHref] = useState<string | null>(
+    null
+  );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatusMessage(null);
     setIsSuccess(false);
+    setFallbackMailtoHref(null);
+
+    if (honeypot.trim().length > 0) {
+      return;
+    }
 
     const validation = validateContactPayload(formState);
     if (!validation.valid) {
@@ -48,7 +78,7 @@ export function InquiryForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const apiResponse = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,30 +86,122 @@ export function InquiryForm() {
         body: JSON.stringify(validation.sanitized),
       });
 
-      const result = (await response.json()) as {
+      const apiResult = (await apiResponse.json()) as {
         message?: string;
+        deliveredByServer?: boolean;
+        deliveryConfig?: {
+          to?: string;
+          cc?: string;
+        };
         errors?: Partial<Record<keyof ContactSubmissionPayload, string>>;
       };
 
-      if (!response.ok) {
-        if (result.errors) {
-          setFieldErrors(result.errors);
+      const targetToEmail =
+        apiResult.deliveryConfig?.to || siteConfig.contactEmail;
+      const targetCcEmail =
+        apiResult.deliveryConfig?.cc ?? siteConfig.ccEmail;
+
+      if (!apiResponse.ok) {
+        if (apiResult.errors) {
+          setFieldErrors(apiResult.errors);
         }
         setStatusMessage(
-          result.message || "Unable to Submit Your Inquiry Right Now."
+          apiResult.message || "Unable to Submit Your Inquiry Right Now."
+        );
+        return;
+      }
+
+      if (apiResult.deliveredByServer) {
+        setIsSuccess(true);
+        setStatusMessage(
+          apiResult.message ||
+          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Service."
+        );
+        setFormState(initialFormState);
+        return;
+      }
+
+      const formSubmitResponse = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(targetToEmail)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: validation.sanitized.fullName,
+            email: validation.sanitized.businessEmail,
+            company: validation.sanitized.companyName || "Not Specified",
+            service: validation.sanitized.serviceInterest,
+            timeline: validation.sanitized.projectTimeline,
+            message: validation.sanitized.projectDetails,
+            _subject: `New Zeltrio Project Inquiry From ${validation.sanitized.fullName}`,
+            ...(targetCcEmail ? { _cc: targetCcEmail } : {}),
+            _replyto: validation.sanitized.businessEmail,
+            _template: "table",
+            _url: window.location.href,
+          }),
+        }
+      );
+
+      const formSubmitResult = (await formSubmitResponse.json()) as {
+        success?: string | boolean;
+        message?: string;
+      };
+
+      const rawMessage = String(formSubmitResult.message || "");
+      const needsActivation = rawMessage.toLowerCase().includes("activation");
+
+      if (needsActivation) {
+        setFallbackMailtoHref(
+          buildDirectMailtoHref(
+            validation.sanitized,
+            targetToEmail,
+            targetCcEmail
+          )
+        );
+        setStatusMessage(
+          `One Time Email Verification Sent to ${targetToEmail}. Please Click the Activation Link in That Email so Future Submissions Deliver Automatically.`
+        );
+        return;
+      }
+
+      const delivered =
+        formSubmitResponse.ok &&
+        formSubmitResult.success !== "false" &&
+        formSubmitResult.success !== false;
+
+      if (!delivered) {
+        setFallbackMailtoHref(
+          buildDirectMailtoHref(
+            validation.sanitized,
+            targetToEmail,
+            targetCcEmail
+          )
+        );
+        setStatusMessage(
+          rawMessage ||
+          "Automated Email Relay Could Not Complete. Please Use the Direct Email Button Below."
         );
         return;
       }
 
       setIsSuccess(true);
       setStatusMessage(
-        result.message ||
-          "Thank You. Your Project Inquiry Has Been Received by Zeltrio Digital Service."
+        `Thank You. Your Project Inquiry Has Been Sent to our team and Our Team Will Respond Within One Day.`
       );
       setFormState(initialFormState);
     } catch {
+      setFallbackMailtoHref(
+        buildDirectMailtoHref(
+          validation.sanitized,
+          siteConfig.contactEmail,
+          siteConfig.ccEmail
+        )
+      );
       setStatusMessage(
-        "A Network Error Occurred While Sending Your Request. Please Try Again."
+        "Unable to Reach the Automated Delivery Service. Please Use the Direct Email Button Below."
       );
     } finally {
       setIsSubmitting(false);
@@ -92,6 +214,19 @@ export function InquiryForm() {
       noValidate
       className="rounded-2xl border border-rule bg-card p-6 text-left shadow-sm sm:p-10"
     >
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="websiteReference">Leave Empty</label>
+        <input
+          id="websiteReference"
+          name="websiteReference"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
       <div className="border-b border-rule pb-6">
         <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
           Project Brief
@@ -100,7 +235,7 @@ export function InquiryForm() {
           Request a Tailored Proposal
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate">
-          Inquiries are routed to {siteConfig.inquiryEmails.join(", ")}. Our
+          Inquiries are delivered to {siteConfig.inquiryEmails.join(", ")}. Our
           team responds personally within one business day.
         </p>
       </div>
@@ -274,13 +409,20 @@ export function InquiryForm() {
       {statusMessage ? (
         <div
           role="status"
-          className={`mt-6 rounded-md border px-4 py-3 text-sm font-medium ${
-            isSuccess
+          className={`mt-6 rounded-md border px-4 py-3.5 text-sm font-medium ${isSuccess
               ? "border-sage/30 bg-sage-tint text-sage"
               : "border-zeltrio/30 bg-zeltrio-tint text-zeltrio"
-          }`}
+            }`}
         >
-          {statusMessage}
+          <p>{statusMessage}</p>
+          {fallbackMailtoHref ? (
+            <a
+              href={fallbackMailtoHref}
+              className="btn-primary mt-3 px-4 py-2 text-xs uppercase tracking-wider"
+            >
+              Send via Email Application
+            </a>
+          ) : null}
         </div>
       ) : null}
 
