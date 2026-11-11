@@ -48,7 +48,7 @@ export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
         />
       ) : null}
 
-      <div className="relative h-full w-full overflow-hidden rounded-full bg-[#f8fafc] ring-2 ring-zeltrio/50 shadow-[0_8px_24px_-8px_rgba(79,142,247,0.55)]">
+      <div className="relative h-full w-full overflow-hidden rounded-full bg-navy ring-2 ring-zeltrio/55 shadow-[0_8px_24px_-8px_rgba(79,142,247,0.55)]">
         {imageUnavailable ? (
           <div className="flex h-full w-full flex-col items-center justify-center bg-navy text-center text-ink">
             <span
@@ -71,7 +71,7 @@ export function BrandLogo({ size = "sm", priority = false }: BrandLogoProps) {
             priority={priority}
             sizes={`${dimensions.px}px`}
             onError={() => setImageUnavailable(true)}
-            className="h-full w-full object-contain p-0.5"
+            className="h-full w-full scale-[1.03] object-cover"
           />
         )}
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import type { ServiceDefinition } from "@/types";
 import { EditorialImage } from "@/components/brand/EditorialImage";
 import { MagneticLink } from "@/components/ui/MagneticLink";
@@ -13,12 +13,27 @@ export function ServicesInteractiveShowcase({
   services,
 }: ServicesInteractiveShowcaseProps) {
   const [activeSlug, setActiveSlug] = useState(services[0]?.slug || "");
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const activeService =
     services.find((service) => service.slug === activeSlug) || services[0];
 
   if (!activeService) {
     return null;
   }
+
+  const handleTabKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    idx: number
+  ) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+      return;
+    }
+    event.preventDefault();
+    const delta = event.key === "ArrowRight" ? 1 : -1;
+    const nextIdx = (idx + delta + services.length) % services.length;
+    setActiveSlug(services[nextIdx].slug);
+    tabRefs.current[nextIdx]?.focus();
+  };
 
   return (
     <div className="surface-glass rounded-2xl border border-rule-strong p-5 text-left shadow-[0_24px_56px_-28px_rgba(0,0,0,0.85)] sm:p-8 lg:p-10">
@@ -27,19 +42,27 @@ export function ServicesInteractiveShowcase({
         aria-label="Interactive Service Explorer"
         className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
       >
-        {services.map((service) => {
+        {services.map((service, idx) => {
           const isSelected = service.slug === activeService.slug;
           return (
             <button
               key={service.slug}
+              ref={(el) => {
+                tabRefs.current[idx] = el;
+              }}
+              id={`service-tab-${service.slug}`}
               type="button"
               role="tab"
               aria-selected={isSelected}
+              aria-controls={`service-panel-${service.slug}`}
+              tabIndex={isSelected ? 0 : -1}
+              onKeyDown={(e) => handleTabKeyDown(e, idx)}
               onClick={() => setActiveSlug(service.slug)}
-              className={`group relative flex min-h-[60px] flex-col items-start justify-center overflow-hidden rounded-xl border px-4 py-3 text-left transition-all duration-300 ${isSelected
+              className={`group relative flex min-h-[60px] flex-col items-start justify-center overflow-hidden rounded-xl border px-4 py-3 text-left transition-all duration-300 ${
+                isSelected
                   ? "border-gold/60 bg-linear-to-br from-surface-elevated to-navy shadow-[0_12px_28px_-14px_rgba(79,142,247,0.5)]"
                   : "border-rule bg-surface/70 text-slate hover:border-zeltrio/45 hover:bg-surface-elevated"
-                }`}
+              }`}
             >
               {isSelected ? (
                 <span
@@ -48,16 +71,18 @@ export function ServicesInteractiveShowcase({
                 />
               ) : null}
               <span
-                className={`text-xs font-bold tracking-widest uppercase transition-colors ${isSelected
+                className={`text-xs font-bold tracking-widest uppercase transition-colors ${
+                  isSelected
                     ? "text-gold"
                     : "text-zeltrio-bright group-hover:text-gold"
-                  }`}
+                }`}
               >
                 Service {service.index}
               </span>
               <span
-                className={`mt-1 font-display text-sm font-bold transition-colors ${isSelected ? "text-ink" : "text-slate group-hover:text-ink"
-                  }`}
+                className={`mt-1 font-display text-sm font-bold transition-colors ${
+                  isSelected ? "text-ink" : "text-slate group-hover:text-ink"
+                }`}
               >
                 {service.title}
               </span>
@@ -67,6 +92,8 @@ export function ServicesInteractiveShowcase({
       </div>
 
       <div
+        id={`service-panel-${activeService.slug}`}
+        aria-labelledby={`service-tab-${activeService.slug}`}
         key={activeService.slug}
         role="tabpanel"
         className="animate-slide-enter mt-8 grid items-center gap-8 border-t border-rule pt-8 lg:grid-cols-12"
@@ -88,10 +115,11 @@ export function ServicesInteractiveShowcase({
             </span>
             {activeService.badge ? (
               <span
-                className={`rounded-full border px-3 py-1 text-xs font-semibold ${activeService.badge === "Core Service"
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                  activeService.badge === "Core Service"
                     ? "border-sage/30 bg-sage-tint text-sage"
                     : "border-gold/30 bg-gold-tint text-gold-bright"
-                  }`}
+                }`}
               >
                 {activeService.badge}
               </span>

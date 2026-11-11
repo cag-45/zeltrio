@@ -50,7 +50,11 @@ foreach ($item in $assetMap) {
 }
 
 Write-Host "Installing npm dependencies..."
-Set-Location $projectRoot
-npm install
+Push-Location $projectRoot
+try {
+    npm install
+} finally {
+    Pop-Location
+}
 
 Write-Host "Setup complete. Run 'npm run dev' to preview locally or 'npm run build' to verify production output."

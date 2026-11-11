@@ -57,12 +57,14 @@ export function MagneticLink({
     }
   };
 
+  const isFullWidth = className.includes("w-full");
+
   return (
     <div
       ref={wrapperRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="inline-flex transition-transform duration-300 ease-out will-change-transform"
+      className={`${isFullWidth ? "flex w-full" : "inline-flex"} transition-transform duration-300 ease-out will-change-transform`}
     >
       {external ? (
         <a

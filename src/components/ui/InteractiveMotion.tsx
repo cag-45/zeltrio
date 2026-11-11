@@ -35,9 +35,13 @@ export function RevealOnScroll({
     }
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches || typeof IntersectionObserver === "undefined") {
-      setRevealed(true);
+    if (reduced.matches) {
       return;
+    }
+
+    if (typeof IntersectionObserver === "undefined") {
+      const rafId = window.requestAnimationFrame(() => setRevealed(true));
+      return () => window.cancelAnimationFrame(rafId);
     }
 
     const observer = new IntersectionObserver(
@@ -82,14 +86,16 @@ export function ScrollProgressBar() {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) {
-      return;
-    }
-
     let rafId = 0;
 
     const updateProgress = () => {
       rafId = 0;
+      if (reduced.matches) {
+        if (barRef.current) {
+          barRef.current.style.transform = "scaleX(0)";
+        }
+        return;
+      }
       const scrollTop = window.scrollY;
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
@@ -102,7 +108,7 @@ export function ScrollProgressBar() {
     };
 
     const onScroll = () => {
-      if (!rafId) {
+      if (!rafId && !reduced.matches) {
         rafId = window.requestAnimationFrame(updateProgress);
       }
     };
@@ -110,6 +116,7 @@ export function ScrollProgressBar() {
     updateProgress();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
+    reduced.addEventListener("change", updateProgress);
 
     return () => {
       if (rafId) {
@@ -117,6 +124,7 @@ export function ScrollProgressBar() {
       }
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      reduced.removeEventListener("change", updateProgress);
     };
   }, []);
 

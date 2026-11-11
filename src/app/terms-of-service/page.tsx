@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Terms of Service",
   description:
-    "General terms governing website usage, project proposals, and digital agency engagements with Zeltrio Digital Service.",
+    "General terms governing website usage, project proposals, and digital agency engagements with Zeltrio Digital Services.",
   path: "/terms-of-service",
 });
 

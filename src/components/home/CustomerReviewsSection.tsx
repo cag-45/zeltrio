@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { CustomerReview } from "@/types";
 import { customerReviewsData } from "@/data/reviews";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -33,6 +33,7 @@ export function CustomerReviewsSection() {
   const [isUserPaused, setIsUserPaused] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const isInteractingRef = useRef(false);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const filteredReviews: CustomerReview[] = useMemo(() => {
     if (selectedCategory === "All Reviews") {
@@ -66,14 +67,11 @@ export function CustomerReviewsSection() {
 
     const startTimer = () => {
       clearTimer();
-      if (
-        !reducedMotion.matches &&
-        !document.hidden &&
-        isVisibleInViewport &&
-        !isInteractingRef.current
-      ) {
+      if (!reducedMotion.matches && !document.hidden && isVisibleInViewport) {
         timerId = window.setInterval(() => {
-          setActiveIndex((prev) => (prev + 1) % filteredReviews.length);
+          if (!isInteractingRef.current && !document.hidden) {
+            setActiveIndex((prev) => (prev + 1) % filteredReviews.length);
+          }
         }, 6500);
       }
     };
@@ -128,6 +126,25 @@ export function CustomerReviewsSection() {
   const goNext = () => {
     setActiveIndex((prev) => (prev + 1) % filteredReviews.length);
   };
+
+  const handleTabKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    idx: number
+  ) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+      return;
+    }
+    event.preventDefault();
+    const delta = event.key === "ArrowRight" ? 1 : -1;
+    const nextIdx =
+      (idx + delta + filterCategories.length) % filterCategories.length;
+    setSelectedCategory(filterCategories[nextIdx]);
+    setActiveIndex(0);
+    tabRefs.current[nextIdx]?.focus();
+  };
+
+  const formattedIndex = String(safeIndex + 1).padStart(2, "0");
+  const formattedTotal = String(filteredReviews.length).padStart(2, "0");
 
   return (
     <section
@@ -196,22 +213,30 @@ export function CustomerReviewsSection() {
           aria-label="Filter Client Reviews by Service"
           className="mt-8 flex flex-wrap gap-2.5 text-left"
         >
-          {filterCategories.map((category) => {
+          {filterCategories.map((category, idx) => {
             const isActive = category === selectedCategory;
             return (
               <button
                 key={category}
+                ref={(el) => {
+                  tabRefs.current[idx] = el;
+                }}
+                id={`review-tab-${idx}`}
                 type="button"
                 role="tab"
                 aria-selected={isActive}
+                aria-controls="featured-review-panel"
+                tabIndex={isActive ? 0 : -1}
+                onKeyDown={(e) => handleTabKeyDown(e, idx)}
                 onClick={() => {
                   setSelectedCategory(category);
                   setActiveIndex(0);
                 }}
-                className={`min-h-[40px] rounded-full border px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 ${isActive
-                    ? "border-gold/60 bg-linear-to-r from-zeltrio-dark to-zeltrio text-[#ffffff] shadow-[0_6px_18px_-6px_rgba(79,142,247,0.6)]"
+                className={`min-h-[40px] rounded-full border px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 ${
+                  isActive
+                    ? "border-gold/60 bg-linear-to-r from-[#1d4ed8] to-[#2563eb] text-[#ffffff] shadow-[0_6px_18px_-6px_rgba(37,99,235,0.65)]"
                     : "border-rule-strong bg-surface-elevated/80 text-slate hover:border-gold/45 hover:text-ink"
-                  }`}
+                }`}
               >
                 {category}
               </button>
@@ -226,6 +251,9 @@ export function CustomerReviewsSection() {
             className="surface-glass mt-8 rounded-2xl border border-rule-strong p-6 text-left shadow-[0_24px_56px_-26px_rgba(0,0,0,0.85)] sm:p-10"
           >
             <div
+              id="featured-review-panel"
+              role="tabpanel"
+              aria-labelledby={`review-tab-${filterCategories.indexOf(selectedCategory)}`}
               key={featuredReview.id}
               className="animate-slide-enter grid gap-8 lg:grid-cols-12 lg:items-center"
             >
@@ -265,7 +293,7 @@ export function CustomerReviewsSection() {
 
                 <div className="mt-6 border-t border-rule pt-4">
                   <p aria-live="polite" className="text-xs font-semibold text-muted">
-                    Showing Review 0{safeIndex + 1} of 0{filteredReviews.length}
+                    Showing Review {formattedIndex} of {formattedTotal}
                   </p>
                 </div>
               </div>
@@ -281,10 +309,11 @@ export function CustomerReviewsSection() {
                 key={review.id}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`group flex h-full flex-col justify-between rounded-2xl border p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${isCurrent
+                className={`group flex h-full flex-col justify-between rounded-2xl border p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${
+                  isCurrent
                     ? "border-gold/60 bg-surface-elevated/95 shadow-[0_18px_36px_-18px_rgba(224,172,88,0.3)]"
                     : "border-rule bg-card/85 hover:border-zeltrio/55 hover:bg-surface-elevated/85"
-                  }`}
+                }`}
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2">

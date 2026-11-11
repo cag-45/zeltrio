@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
   description:
-    "How Zeltrio Digital Service handles project inquiry information, website analytics, and client confidentiality.",
+    "How Zeltrio Digital Services handles project inquiry information, website analytics, and client confidentiality.",
   path: "/privacy-policy",
 });
 

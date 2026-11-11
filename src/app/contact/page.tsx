@@ -164,7 +164,7 @@ export default function ContactPage() {
 
           <div className="lg:col-span-7">
             <RevealOnScroll delayMs={80}>
-              <InquiryForm />
+              <InquiryForm inquiryEmails={siteConfig.inquiryEmails} />
             </RevealOnScroll>
           </div>
         </div>

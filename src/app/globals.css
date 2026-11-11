@@ -221,8 +221,8 @@
   gap: 0.5rem;
   min-height: 46px;
   border-radius: 0.625rem;
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 55%, #4f8ef7 100%);
-  border: 1px solid rgba(117, 170, 255, 0.4);
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  border: 1px solid rgba(117, 170, 255, 0.45);
   color: #ffffff;
   font-family: var(--font-display);
   font-weight: 600;

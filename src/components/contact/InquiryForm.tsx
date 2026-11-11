@@ -43,7 +43,13 @@ function buildDirectMailtoHref(
   return `mailto:${toEmail}?subject=${encodeURIComponent(subject)}${ccQuery}&body=${encodeURIComponent(body)}`;
 }
 
-export function InquiryForm() {
+interface InquiryFormProps {
+  inquiryEmails?: readonly string[];
+}
+
+export function InquiryForm({
+  inquiryEmails = siteConfig.inquiryEmails,
+}: InquiryFormProps) {
   const [formState, setFormState] =
     useState<ContactSubmissionPayload>(initialFormState);
   const [honeypot, setHoneypot] = useState("");
@@ -235,8 +241,8 @@ export function InquiryForm() {
           Request a Tailored Proposal
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate">
-          Inquiries are delivered to {siteConfig.inquiryEmails.join(", ")}. Our
-          team responds personally within one business day.
+          Inquiries are delivered to {inquiryEmails.join(", ")}. Our team
+          responds personally within one business day.
         </p>
       </div>
 
