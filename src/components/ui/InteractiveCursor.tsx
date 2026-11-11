@@ -27,22 +27,25 @@ export function InteractiveCursor() {
     let frameId = 0;
 
     const updateVisuals = () => {
-      ringX += (mouseX - ringX) * 0.22;
-      ringY += (mouseY - ringY) * 0.22;
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
 
       if (dotRef.current) {
-        const dotScale = isPressed ? 0.78 : isInteractive ? 1.45 : 1;
+        const dotScale = isPressed ? 0.72 : isInteractive ? 1.35 : 1;
         dotRef.current.style.opacity = isVisible ? "1" : "0";
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${dotScale})`;
       }
 
       if (ringRef.current) {
-        const ringScale = isPressed ? 0.85 : isInteractive ? 1.55 : 1;
+        const ringScale = isPressed ? 0.85 : isInteractive ? 1.65 : 1;
         ringRef.current.style.opacity = isVisible
           ? isInteractive
-            ? "0.8"
-            : "0.42"
+            ? "0.9"
+            : "0.48"
           : "0";
+        ringRef.current.style.borderColor = isInteractive
+          ? "rgba(224, 172, 88, 0.85)"
+          : "rgba(117, 170, 255, 0.65)";
         ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${ringScale})`;
       }
 
@@ -96,12 +99,12 @@ export function InteractiveCursor() {
     >
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 h-8 w-8 rounded-full border border-cursor-red/75 transition-opacity duration-150 will-change-transform"
+        className="fixed top-0 left-0 h-8 w-8 rounded-full border border-zeltrio-bright/65 bg-zeltrio/5 transition-colors duration-200 will-change-transform"
         style={{ opacity: 0 }}
       />
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 h-2.5 w-2.5 rounded-full bg-cursor-red shadow-[0_0_10px_rgba(239,35,60,0.65)] transition-opacity duration-150 will-change-transform"
+        className="fixed top-0 left-0 h-2 w-2 rounded-full bg-gold shadow-[0_0_12px_rgba(224,172,88,0.85)] will-change-transform"
         style={{ opacity: 0 }}
       />
     </div>

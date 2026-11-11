@@ -15,11 +15,11 @@ export function ServiceFaqAccordion({
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="rounded-2xl border border-rule bg-card p-7 text-left sm:p-10">
-      <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+    <section className="surface-glass rounded-2xl border border-rule-strong p-7 text-left sm:p-10">
+      <p className="text-xs font-bold tracking-widest uppercase text-gold">
         Common Questions
       </p>
-      <h2 className="mt-3 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+      <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
         Frequently Asked Questions About {serviceTitle}
       </h2>
 
@@ -32,16 +32,17 @@ export function ServiceFaqAccordion({
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 aria-expanded={isOpen}
-                className="flex w-full items-start justify-between gap-6 text-left transition-colors hover:text-zeltrio"
+                className="flex w-full items-start justify-between gap-6 text-left transition-colors hover:text-gold-bright"
               >
-                <span className="text-base font-bold text-ink sm:text-lg">
+                <span className="font-display text-base font-bold text-ink sm:text-lg">
                   {faq.question}
                 </span>
                 <span
-                  className={`shrink-0 rounded-md border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${isOpen
-                      ? "border-zeltrio bg-zeltrio text-canvas"
-                      : "border-rule bg-surface text-slate hover:border-zeltrio hover:text-zeltrio"
-                    }`}
+                  className={`shrink-0 rounded-lg border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    isOpen
+                      ? "border-gold/60 bg-gold text-canvas"
+                      : "border-rule-strong bg-surface-elevated text-slate hover:border-zeltrio hover:text-zeltrio-bright"
+                  }`}
                 >
                   {isOpen ? "Hide" : "Read"}
                 </span>

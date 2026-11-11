@@ -115,7 +115,7 @@ export function InquiryForm() {
         setIsSuccess(true);
         setStatusMessage(
           apiResult.message ||
-          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Services."
+            "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Services."
         );
         setFormState(initialFormState);
         return;
@@ -182,14 +182,14 @@ export function InquiryForm() {
         );
         setStatusMessage(
           rawMessage ||
-          "Automated Email Relay Could Not Complete. Please Use the Direct Email Button Below."
+            "Automated Email Relay Could Not Complete. Please Use the Direct Email Button Below."
         );
         return;
       }
 
       setIsSuccess(true);
       setStatusMessage(
-        `Thank You. Your Project Inquiry Has Been Sent to our team and Our Team Will Respond Within One Day.`
+        "Thank You. Your Project Inquiry Has Been Sent to our team and Our Team Will Respond Within One Day."
       );
       setFormState(initialFormState);
     } catch {
@@ -212,7 +212,7 @@ export function InquiryForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-rule bg-card p-6 text-left shadow-sm sm:p-10"
+      className="surface-glass rounded-2xl border border-rule-strong p-6 text-left shadow-[0_24px_56px_-26px_rgba(0,0,0,0.85)] sm:p-10"
     >
       <div className="sr-only" aria-hidden="true">
         <label htmlFor="websiteReference">Leave Empty</label>
@@ -228,10 +228,10 @@ export function InquiryForm() {
       </div>
 
       <div className="border-b border-rule pb-6">
-        <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+        <p className="text-xs font-bold tracking-widest uppercase text-gold">
           Project Brief
         </p>
-        <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink">
+        <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-ink">
           Request a Tailored Proposal
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate">
@@ -261,10 +261,13 @@ export function InquiryForm() {
               setFormState((prev) => ({ ...prev, fullName: e.target.value }))
             }
             placeholder="Enter Your Full Name"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface/90 px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.fullName ? (
-            <p id="fullName-error" className="mt-1.5 text-xs font-semibold text-zeltrio">
+            <p
+              id="fullName-error"
+              className="mt-1.5 text-xs font-semibold text-gold-bright"
+            >
               {fieldErrors.fullName}
             </p>
           ) : null}
@@ -295,12 +298,12 @@ export function InquiryForm() {
               }))
             }
             placeholder="Enter Your Email Address"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface/90 px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.businessEmail ? (
             <p
               id="businessEmail-error"
-              className="mt-1.5 text-xs font-semibold text-zeltrio"
+              className="mt-1.5 text-xs font-semibold text-gold-bright"
             >
               {fieldErrors.businessEmail}
             </p>
@@ -324,7 +327,7 @@ export function InquiryForm() {
               setFormState((prev) => ({ ...prev, companyName: e.target.value }))
             }
             placeholder="Enter Company or Creator Name"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface/90 px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm placeholder:text-muted"
           />
         </div>
 
@@ -345,7 +348,7 @@ export function InquiryForm() {
                 serviceInterest: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm"
           >
             {servicesData.map((service) => (
               <option key={service.slug} value={service.title}>
@@ -378,7 +381,7 @@ export function InquiryForm() {
                 projectTimeline: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm"
           >
             {timelineOptions.map((option) => (
               <option key={option} value={option}>
@@ -412,12 +415,12 @@ export function InquiryForm() {
               }))
             }
             placeholder="Describe Your Website, Search Optimization, Influencer Launch, Digital Marketing, or Automation Goals"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
+            className="mt-2 w-full rounded-lg border border-rule-strong bg-surface/90 px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.projectDetails ? (
             <p
               id="projectDetails-error"
-              className="mt-1.5 text-xs font-semibold text-zeltrio"
+              className="mt-1.5 text-xs font-semibold text-gold-bright"
             >
               {fieldErrors.projectDetails}
             </p>
@@ -428,10 +431,11 @@ export function InquiryForm() {
       {statusMessage ? (
         <div
           role="status"
-          className={`mt-6 rounded-md border px-4 py-3.5 text-sm font-medium ${isSuccess
-              ? "border-sage/30 bg-sage-tint text-sage"
-              : "border-zeltrio/30 bg-zeltrio-tint text-zeltrio"
-            }`}
+          className={`mt-6 rounded-xl border px-4 py-3.5 text-sm font-medium ${
+            isSuccess
+              ? "border-sage/35 bg-sage-tint text-sage"
+              : "border-gold/35 bg-gold-tint text-gold-bright"
+          }`}
         >
           <p>{statusMessage}</p>
           {fallbackMailtoHref ? (
@@ -452,7 +456,8 @@ export function InquiryForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary px-7 py-3.5 text-sm disabled:cursor-not-allowed disabled:opacity-60"
+          aria-busy={isSubmitting}
+          className="btn-gold px-7 py-3.5 text-sm disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Submitting Inquiry" : "Submit Project Inquiry"}
         </button>

@@ -5,9 +5,11 @@ import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { BackgroundPhoto } from "@/components/brand/BackgroundPhoto";
+import { SocialLogoButtons } from "@/components/brand/SocialLogoButtons";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "About Zeltrio Digital Services",
@@ -32,8 +34,8 @@ export default function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="absolute inset-0">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas/45 py-16 backdrop-blur-[2px] sm:py-20">
+        <div className="pointer-events-none absolute inset-0">
           <BackgroundPhoto
             src={siteConfig.studioBackgroundPath}
             alt="Zeltrio Digital Services specialists collaborating in a studio workspace"
@@ -42,17 +44,17 @@ export default function AboutPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+            className="absolute inset-0 bg-linear-to-r from-canvas/85 via-canvas/75 to-surface/75"
           />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="animate-hero-enter lg:col-span-7">
-              <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+              <p className="text-xs font-bold tracking-widest uppercase text-gold">
                 About the Agency
               </p>
-              <h1 className="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
                 {companyStory.headline}
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-slate">
@@ -63,45 +65,41 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="animate-hero-enter lg:col-span-5">
-              <div className="flex flex-col items-start rounded-2xl border border-navy-border bg-navy p-8 text-left text-canvas shadow-lg sm:p-10">
+            <div className="animate-hero-enter-delay-1 lg:col-span-5">
+              <SpotlightCard
+                accent="gold"
+                className="surface-glass flex flex-col items-start rounded-2xl border border-rule-strong p-8 text-left text-ink shadow-[0_28px_64px_-24px_rgba(0,0,0,0.85)] sm:p-10"
+              >
                 <BrandLogo size="hero" priority />
-                <h2 className="mt-6 text-2xl font-bold tracking-tight">
+                <h2 className="mt-6 font-display text-2xl font-bold tracking-tight text-ink">
                   {siteConfig.legalName}
                 </h2>
-                <p className="mt-1.5 text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
+                <p className="mt-1.5 text-xs font-bold tracking-widest uppercase text-gold">
                   {siteConfig.tagline}
                 </p>
-                <p className="mt-2 text-sm text-canvas/80">
+                <p className="mt-2 text-sm text-slate">
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </p>
 
-                <div className="mt-6 flex w-full flex-wrap gap-3 border-t border-navy-border pt-6">
-                  {siteConfig.socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-ghost-navy px-4 py-2 text-xs uppercase tracking-wider"
-                    >
-                      Follow on {social.name}
-                    </a>
-                  ))}
+                <div className="mt-6 flex w-full items-center justify-between gap-3 border-t border-rule pt-6">
+                  <span className="text-xs font-bold tracking-widest uppercase text-muted">
+                    Social
+                  </span>
+                  <SocialLogoButtons size="md" />
                 </div>
-              </div>
+              </SpotlightCard>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-surface py-16 sm:py-20">
+      <section className="relative bg-surface/55 py-16 backdrop-blur-[2px] sm:py-20">
         <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+            <p className="text-xs font-bold tracking-widest uppercase text-gold">
               Operating Principles
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
               How Zeltrio Approaches Every Client Engagement
             </h2>
           </div>
@@ -109,17 +107,22 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {companyPrinciples.map((principle, idx) => (
               <RevealOnScroll key={principle.number} delayMs={idx * 80}>
-                <article className="h-full rounded-xl border border-rule bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-zeltrio/50 hover:shadow-md sm:p-8">
-                  <span className="text-xs font-bold tracking-widest uppercase text-zeltrio">
-                    Principle {principle.number}
-                  </span>
-                  <h3 className="mt-3 text-xl font-bold tracking-tight text-ink">
-                    {principle.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-relaxed text-slate">
-                    {principle.description}
-                  </p>
-                </article>
+                <SpotlightCard
+                  accent={idx % 2 === 0 ? "cobalt" : "gold"}
+                  className="h-full rounded-2xl border border-rule-strong bg-card/90 p-7 backdrop-blur-md transition-colors duration-300 hover:border-gold/50 sm:p-8"
+                >
+                  <article>
+                    <span className="text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
+                      Principle {principle.number}
+                    </span>
+                    <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-ink">
+                      {principle.title}
+                    </h3>
+                    <p className="mt-3 text-base leading-relaxed text-slate">
+                      {principle.description}
+                    </p>
+                  </article>
+                </SpotlightCard>
               </RevealOnScroll>
             ))}
           </div>

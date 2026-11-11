@@ -1,30 +1,33 @@
-import Link from "next/link";
 import { servicesData } from "@/data/services";
 import { ServiceCard } from "@/components/services/ServiceCard";
 import { ServicesInteractiveShowcase } from "@/components/home/ServicesInteractiveShowcase";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
+import { MagneticLink } from "@/components/ui/MagneticLink";
 
 export function ServicesGridSection() {
   return (
-    <section id="services" className="bg-surface py-16 sm:py-24">
+    <section
+      id="services"
+      className="relative bg-surface/55 py-16 backdrop-blur-[2px] sm:py-24"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <RevealOnScroll>
           <div className="flex flex-col justify-between gap-6 border-b border-rule pb-10 text-left md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+              <p className="text-xs font-bold tracking-widest uppercase text-gold">
                 Agency Capabilities
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
                 Specialized Digital Services Structured for Real Business
                 Outcomes
               </h2>
             </div>
-            <Link
+            <MagneticLink
               href="/services"
               className="btn-secondary shrink-0 px-5 py-2.5 text-sm"
             >
               Compare All Service Scopes
-            </Link>
+            </MagneticLink>
           </div>
         </RevealOnScroll>
 

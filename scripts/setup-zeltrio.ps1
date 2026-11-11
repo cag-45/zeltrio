@@ -9,7 +9,7 @@ if (-not (Test-Path $imagesTargetDir)) {
 
 $assetMap = @(
     @{
-        Source = "C:\Users\SIRI TECH_HYD\.gemini\antigravity\brain\f7ce2117-9aef-4872-bfa2-14f34ef39a75\.user_uploaded\media_1794409134557_e063fe15.jpg"
+        Source = "C:\Users\SIRI TECH_HYD\.gemini\antigravity\brain\6fc0f5d3-a2ec-46e2-b704-680d1ab6f054\.user_uploaded\media_1794412748733_a1c1c361.jpg"
         Target = Join-Path $imagesTargetDir "zeltrio-logo.jpg"
     },
     @{
@@ -43,7 +43,8 @@ foreach ($item in $assetMap) {
     if (Test-Path $item.Source) {
         Copy-Item -Path $item.Source -Destination $item.Target -Force
         Write-Host "  Copied $(Split-Path -Leaf $item.Target)"
-    } else {
+    }
+    else {
         Write-Warning "  Missing source file: $($item.Source)"
     }
 }

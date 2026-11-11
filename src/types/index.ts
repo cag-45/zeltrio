@@ -66,8 +66,6 @@ export interface CompanyPrinciple {
 export interface CustomerReview {
   id: string;
   clientName: string;
-  roleTitle: string;
-  companyOrChannel: string;
   serviceCategory: string;
   ratingText: string;
   headline: string;

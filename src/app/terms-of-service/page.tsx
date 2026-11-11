@@ -11,21 +11,21 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function TermsOfServicePage() {
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section className="relative bg-canvas/45 py-16 backdrop-blur-[2px] sm:py-20">
       <div className="mx-auto max-w-4xl px-4 text-left sm:px-6 lg:px-8">
-        <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+        <p className="text-xs font-bold tracking-widest uppercase text-gold">
           Legal Information
         </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+        <h1 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Terms of Service
         </h1>
         <p className="mt-4 text-sm font-medium text-muted">
           Effective Date November 2026 for {siteConfig.legalName}.
         </p>
 
-        <div className="mt-10 space-y-8 border-t border-rule pt-8 text-base leading-relaxed text-slate">
+        <div className="surface-glass mt-10 space-y-8 rounded-2xl border border-rule-strong p-7 text-base leading-relaxed text-slate sm:p-10">
           <div>
-            <h2 className="text-xl font-bold text-ink">
+            <h2 className="font-display text-xl font-bold text-ink">
               Scope of Website Information
             </h2>
             <p className="mt-2">
@@ -37,8 +37,8 @@ export default function TermsOfServicePage() {
             </p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-bold text-ink">
+          <div className="border-t border-rule pt-6">
+            <h2 className="font-display text-xl font-bold text-ink">
               Intellectual Property
             </h2>
             <p className="mt-2">
@@ -50,8 +50,8 @@ export default function TermsOfServicePage() {
             </p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-bold text-ink">
+          <div className="border-t border-rule pt-6">
+            <h2 className="font-display text-xl font-bold text-ink">
               Client Cooperation and Timelines
             </h2>
             <p className="mt-2">

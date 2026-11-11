@@ -1,6 +1,6 @@
 import OpenGraphImage from "./opengraph-image";
 
-export const alt = "Zeltrio Digital Service preview";
+export const alt = "Zeltrio Digital Services Preview";
 export const size = {
   width: 1200,
   height: 630,

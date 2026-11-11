@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import type { ServiceDefinition } from "@/types";
 import { EditorialImage } from "@/components/brand/EditorialImage";
+import { MagneticLink } from "@/components/ui/MagneticLink";
 
 interface ServicesInteractiveShowcaseProps {
   services: ServiceDefinition[];
@@ -21,11 +21,11 @@ export function ServicesInteractiveShowcase({
   }
 
   return (
-    <div className="rounded-2xl border border-rule bg-canvas p-5 text-left shadow-sm sm:p-8 lg:p-10">
+    <div className="surface-glass rounded-2xl border border-rule-strong p-5 text-left shadow-[0_24px_56px_-28px_rgba(0,0,0,0.85)] sm:p-8 lg:p-10">
       <div
         role="tablist"
         aria-label="Interactive Service Explorer"
-        className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
       >
         {services.map((service) => {
           const isSelected = service.slug === activeService.slug;
@@ -36,20 +36,31 @@ export function ServicesInteractiveShowcase({
               role="tab"
               aria-selected={isSelected}
               onClick={() => setActiveSlug(service.slug)}
-              className={`flex min-h-[54px] flex-col items-start justify-center rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
-                isSelected
-                  ? "border-zeltrio bg-navy text-canvas shadow-md"
-                  : "border-rule bg-surface text-ink hover:border-zeltrio/60 hover:bg-zeltrio-tint/40"
-              }`}
-            >
-              <span
-                className={`text-xs font-bold tracking-widest uppercase ${
-                  isSelected ? "text-zeltrio-bright" : "text-zeltrio"
+              className={`group relative flex min-h-[60px] flex-col items-start justify-center overflow-hidden rounded-xl border px-4 py-3 text-left transition-all duration-300 ${isSelected
+                  ? "border-gold/60 bg-linear-to-br from-surface-elevated to-navy shadow-[0_12px_28px_-14px_rgba(79,142,247,0.5)]"
+                  : "border-rule bg-surface/70 text-slate hover:border-zeltrio/45 hover:bg-surface-elevated"
                 }`}
+            >
+              {isSelected ? (
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-0.5 bg-linear-to-r from-zeltrio-bright to-gold"
+                />
+              ) : null}
+              <span
+                className={`text-xs font-bold tracking-widest uppercase transition-colors ${isSelected
+                    ? "text-gold"
+                    : "text-zeltrio-bright group-hover:text-gold"
+                  }`}
               >
                 Service {service.index}
               </span>
-              <span className="mt-1 text-sm font-bold">{service.title}</span>
+              <span
+                className={`mt-1 font-display text-sm font-bold transition-colors ${isSelected ? "text-ink" : "text-slate group-hover:text-ink"
+                  }`}
+              >
+                {service.title}
+              </span>
             </button>
           );
         })}
@@ -60,7 +71,7 @@ export function ServicesInteractiveShowcase({
         role="tabpanel"
         className="animate-slide-enter mt-8 grid items-center gap-8 border-t border-rule pt-8 lg:grid-cols-12"
       >
-        <div className="lg:col-span-6">
+        <div className="group lg:col-span-6">
           <EditorialImage
             src={activeService.imagePath}
             alt={activeService.imageAlt}
@@ -72,23 +83,22 @@ export function ServicesInteractiveShowcase({
 
         <div className="space-y-5 lg:col-span-6">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+            <span className="text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
               Practice {activeService.index}
             </span>
             {activeService.badge ? (
               <span
-                className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                  activeService.badge === "Core Service"
-                    ? "bg-sage-tint text-sage"
-                    : "bg-zeltrio-tint text-zeltrio"
-                }`}
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${activeService.badge === "Core Service"
+                    ? "border-sage/30 bg-sage-tint text-sage"
+                    : "border-gold/30 bg-gold-tint text-gold-bright"
+                  }`}
               >
                 {activeService.badge}
               </span>
             ) : null}
           </div>
 
-          <h3 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+          <h3 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
             {activeService.title}
           </h3>
 
@@ -100,9 +110,11 @@ export function ServicesInteractiveShowcase({
             {activeService.deliverables.map((item) => (
               <div
                 key={item.title}
-                className="rounded-lg border border-rule bg-surface/75 p-3.5"
+                className="rounded-xl border border-rule bg-surface/80 p-3.5 transition-colors duration-200 hover:border-zeltrio/40 hover:bg-surface-elevated"
               >
-                <p className="text-sm font-bold text-ink">{item.title}</p>
+                <p className="font-display text-sm font-bold text-ink">
+                  {item.title}
+                </p>
                 <p className="mt-1 text-xs leading-relaxed text-slate">
                   {item.description}
                 </p>
@@ -111,19 +123,35 @@ export function ServicesInteractiveShowcase({
           </div>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Link
+            <MagneticLink
               href={`/services/${activeService.slug}`}
-              className="btn-primary px-6 py-3 text-sm"
+              className="btn-gold px-6 py-3 text-sm"
             >
-              Explore {activeService.title}
-            </Link>
-            <Link href="/contact" className="btn-secondary px-6 py-3 text-sm">
+              <span>Explore {activeService.title}</span>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </MagneticLink>
+            <MagneticLink
+              href="/contact"
+              className="btn-secondary px-6 py-3 text-sm"
+            >
               Book Consultation
-            </Link>
+            </MagneticLink>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

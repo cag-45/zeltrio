@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CustomerReview } from "@/types";
 import { customerReviewsData } from "@/data/reviews";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 const filterCategories = [
   "All Reviews",
@@ -145,20 +146,20 @@ export function CustomerReviewsSection() {
       onBlurCapture={() => {
         isInteractingRef.current = false;
       }}
-      className="border-t border-rule bg-canvas py-16 sm:py-24"
+      className="relative border-t border-rule bg-surface/50 py-16 backdrop-blur-[2px] sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-6 border-b border-rule pb-8 text-left lg:flex-row lg:items-end">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+            <p className="text-xs font-bold tracking-widest uppercase text-gold">
               Client Reviews
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
               Trusted by Growing Businesses and Ambitious Creators
             </h2>
             <p className="mt-3 text-base leading-relaxed text-slate">
-              Feedback from founders, medical studios, retail operators, and
-              creators who partnered with Zeltrio Digital Services.
+              Direct feedback from clients and creators who partnered with
+              Zeltrio Digital Services.
             </p>
           </div>
 
@@ -207,11 +208,10 @@ export function CustomerReviewsSection() {
                   setSelectedCategory(category);
                   setActiveIndex(0);
                 }}
-                className={`min-h-[40px] rounded-full border px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 ${
-                  isActive
-                    ? "border-zeltrio bg-zeltrio text-canvas shadow-xs"
-                    : "border-rule bg-surface text-slate hover:border-zeltrio hover:text-zeltrio"
-                }`}
+                className={`min-h-[40px] rounded-full border px-4 py-2 text-xs font-bold tracking-wide transition-all duration-200 ${isActive
+                    ? "border-gold/60 bg-linear-to-r from-zeltrio-dark to-zeltrio text-[#ffffff] shadow-[0_6px_18px_-6px_rgba(79,142,247,0.6)]"
+                    : "border-rule-strong bg-surface-elevated/80 text-slate hover:border-gold/45 hover:text-ink"
+                  }`}
               >
                 {category}
               </button>
@@ -220,20 +220,24 @@ export function CustomerReviewsSection() {
         </div>
 
         {featuredReview ? (
-          <div
-            key={featuredReview.id}
-            className="animate-slide-enter mt-8 rounded-2xl border border-zeltrio/25 bg-surface p-6 text-left shadow-sm sm:p-10"
+          <SpotlightCard
+            accent="gold"
+            enableTilt={false}
+            className="surface-glass mt-8 rounded-2xl border border-rule-strong p-6 text-left shadow-[0_24px_56px_-26px_rgba(0,0,0,0.85)] sm:p-10"
           >
-            <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+            <div
+              key={featuredReview.id}
+              className="animate-slide-enter grid gap-8 lg:grid-cols-12 lg:items-center"
+            >
               <div className="lg:col-span-8">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full bg-zeltrio px-3.5 py-1 text-xs font-bold text-canvas">
+                  <span className="rounded-full border border-gold/40 bg-gold-tint px-3.5 py-1 text-xs font-bold text-gold-bright">
                     {featuredReview.ratingText}
                   </span>
-                  <span className="rounded-full border border-rule bg-canvas px-3.5 py-1 text-xs font-bold text-ink">
+                  <span className="rounded-full border border-rule-strong bg-surface-elevated px-3.5 py-1 text-xs font-bold text-ink">
                     {featuredReview.serviceCategory}
                   </span>
-                  <span className="text-xs font-semibold text-zeltrio">
+                  <span className="text-xs font-semibold text-zeltrio-bright">
                     {featuredReview.outcomeBadge}
                   </span>
                 </div>
@@ -247,20 +251,14 @@ export function CustomerReviewsSection() {
                 </blockquote>
               </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-rule bg-canvas p-6 lg:col-span-4">
+              <div className="flex flex-col justify-between rounded-xl border border-rule-strong bg-surface/90 p-6 lg:col-span-4">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-canvas">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-linear-to-br from-surface-elevated to-navy font-display text-sm font-bold text-gold-bright">
                     {getInitials(featuredReview.clientName)}
                   </div>
                   <div>
-                    <p className="text-base font-bold text-ink">
+                    <p className="font-display text-base font-bold text-ink">
                       {featuredReview.clientName}
-                    </p>
-                    <p className="text-xs font-semibold text-muted">
-                      {featuredReview.roleTitle}
-                    </p>
-                    <p className="mt-0.5 text-xs font-bold text-zeltrio">
-                      {featuredReview.companyOrChannel}
                     </p>
                   </div>
                 </div>
@@ -272,7 +270,7 @@ export function CustomerReviewsSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         ) : null}
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -283,23 +281,22 @@ export function CustomerReviewsSection() {
                 key={review.id}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`flex h-full flex-col justify-between rounded-xl border p-6 text-left transition-all duration-300 hover:-translate-y-1 ${
-                  isCurrent
-                    ? "border-zeltrio bg-zeltrio-tint/45 shadow-md"
-                    : "border-rule bg-card hover:border-zeltrio/50 hover:shadow-sm"
-                }`}
+                className={`group flex h-full flex-col justify-between rounded-2xl border p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${isCurrent
+                    ? "border-gold/60 bg-surface-elevated/95 shadow-[0_18px_36px_-18px_rgba(224,172,88,0.3)]"
+                    : "border-rule bg-card/85 hover:border-zeltrio/55 hover:bg-surface-elevated/85"
+                  }`}
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-bold tracking-wider uppercase text-zeltrio">
+                    <span className="text-xs font-bold tracking-wider uppercase text-zeltrio-bright">
                       {review.serviceCategory}
                     </span>
-                    <span className="rounded bg-surface px-2.5 py-1 text-xs font-bold text-ink">
+                    <span className="rounded-md border border-gold/25 bg-gold-tint px-2.5 py-1 text-xs font-bold text-gold-bright">
                       {review.ratingText}
                     </span>
                   </div>
 
-                  <h4 className="mt-3 text-base font-bold text-ink">
+                  <h4 className="mt-3 font-display text-base font-bold text-ink transition-colors group-hover:text-gold-bright">
                     {review.headline}
                   </h4>
 
@@ -309,15 +306,12 @@ export function CustomerReviewsSection() {
                 </div>
 
                 <div className="mt-5 flex items-center gap-3 border-t border-rule pt-4">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-xs font-bold text-canvas">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-zeltrio/40 bg-surface-elevated font-display text-xs font-bold text-zeltrio-bright">
                     {getInitials(review.clientName)}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-ink">
+                    <p className="font-display text-sm font-bold text-ink">
                       {review.clientName}
-                    </p>
-                    <p className="text-xs font-medium text-muted">
-                      {review.companyOrChannel}
                     </p>
                   </div>
                 </div>
@@ -329,4 +323,3 @@ export function CustomerReviewsSection() {
     </section>
   );
 }
-

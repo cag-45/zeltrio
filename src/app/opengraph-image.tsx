@@ -17,9 +17,9 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#ffffff",
+          background: "linear-gradient(135deg, #0b0f17 0%, #101624 55%, #161e2f 100%)",
           padding: "64px 72px",
-          color: "#061a40",
+          color: "#f2efe9",
           fontFamily: "sans-serif",
         }}
       >
@@ -33,26 +33,26 @@ export default function OpenGraphImage() {
           <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
             <div
               style={{
-                width: 60,
-                height: 60,
+                width: 64,
+                height: 64,
                 borderRadius: "9999px",
-                backgroundColor: "#ffffff",
-                border: "4px solid #0066ff",
-                color: "#061a40",
+                backgroundColor: "#0e1422",
+                border: "3px solid #4f8ef7",
+                color: "#e0ac58",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: 30,
+                fontSize: 32,
                 fontWeight: 800,
               }}
             >
               Z
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: 30, fontWeight: 800, color: "#061a40" }}>
+              <span style={{ fontSize: 30, fontWeight: 800, color: "#f2efe9" }}>
                 Zeltrio
               </span>
-              <span style={{ fontSize: 17, fontWeight: 600, color: "#0066ff" }}>
+              <span style={{ fontSize: 17, fontWeight: 600, color: "#75aaff" }}>
                 Digital Services
               </span>
             </div>
@@ -64,7 +64,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#0066ff",
+              color: "#e0ac58",
             }}
           >
             Accelerate Your Business Growth
@@ -77,14 +77,14 @@ export default function OpenGraphImage() {
               fontSize: 52,
               fontWeight: 800,
               lineHeight: 1.14,
-              color: "#061a40",
+              color: "#f2efe9",
               maxWidth: "960px",
             }}
           >
             Websites, Search Visibility, Creator Launches, and Business Automation
           </div>
-          <div style={{ fontSize: 24, color: "#334155", maxWidth: "840px" }}>
-            Disciplined Digital Systems Built for Speed, Organic Discovery, and Measurable Client Conversion
+          <div style={{ fontSize: 24, color: "#c7c2b8", maxWidth: "860px" }}>
+            Precision Digital Systems Engineered for Speed, Human Clarity, and Dependable Growth
           </div>
         </div>
 
@@ -92,11 +92,11 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: "36px",
-            borderTop: "2px solid #d6e1f0",
+            borderTop: "1px solid rgba(226, 222, 213, 0.16)",
             paddingTop: "24px",
             fontSize: 18,
             fontWeight: 700,
-            color: "#061a40",
+            color: "#e0ac58",
           }}
         >
           <span>Website Development</span>

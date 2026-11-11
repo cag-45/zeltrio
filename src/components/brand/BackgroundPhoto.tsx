@@ -14,7 +14,7 @@ export function BackgroundPhoto({
   src,
   alt,
   priority = false,
-  className = "opacity-25",
+  className = "opacity-20",
 }: BackgroundPhotoProps) {
   const [failed, setFailed] = useState(false);
 
@@ -30,8 +30,7 @@ export function BackgroundPhoto({
       priority={priority}
       sizes="100vw"
       onError={() => setFailed(true)}
-      className={`pointer-events-none object-cover object-center select-none ${className}`}
+      className={`pointer-events-none object-cover object-center brightness-[0.55] contrast-[1.08] saturate-[0.82] select-none ${className}`}
     />
   );
 }
-

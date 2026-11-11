@@ -34,8 +34,8 @@ export default function ServicesPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="absolute inset-0">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas/45 py-16 backdrop-blur-[2px] sm:py-20">
+        <div className="pointer-events-none absolute inset-0">
           <BackgroundPhoto
             src={siteConfig.studioBackgroundPath}
             alt="Zeltrio Digital Services team reviewing design and SEO execution plans"
@@ -44,19 +44,19 @@ export default function ServicesPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+            className="absolute inset-0 bg-linear-to-r from-canvas/85 via-canvas/75 to-surface/75"
           />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
-          <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
+          <p className="animate-hero-enter text-xs font-bold tracking-widest uppercase text-gold">
             Service Directory
           </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+          <h1 className="animate-hero-enter-delay-1 mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Four Integrated Practices Designed to Build, Rank, Market, and
             Automate Your Business
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate">
+          <p className="animate-hero-enter-delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-slate">
             Every engagement can stand alone or combine across disciplines so
             your website, organic search footprint, influencer or brand launch,
             and client follow up systems operate seamlessly together.
@@ -64,7 +64,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-surface py-16 sm:py-20">
+      <section className="relative bg-surface/55 py-16 backdrop-blur-[2px] sm:py-20">
         <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
           <RevealOnScroll>
             <ServicesInteractiveShowcase services={servicesData} />

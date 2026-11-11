@@ -18,15 +18,15 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "9999px",
-          backgroundColor: "#ffffff",
-          border: "3px solid #0066ff",
-          color: "#061a40",
+          background: "linear-gradient(135deg, #0b0f17 0%, #161e2f 100%)",
+          border: "2.5px solid #4f8ef7",
+          color: "#f2efe9",
           fontSize: 18,
           fontWeight: 800,
           fontFamily: "sans-serif",
         }}
       >
-        Z
+        <span style={{ color: "#e0ac58" }}>Z</span>
       </div>
     ),
     {
