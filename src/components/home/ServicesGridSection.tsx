@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { servicesData } from "@/data/services";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import { ServicesInteractiveShowcase } from "@/components/home/ServicesInteractiveShowcase";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 
 export function ServicesGridSection() {
@@ -14,7 +15,8 @@ export function ServicesGridSection() {
                 Agency Capabilities
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-                Specialized Digital Services Structured for Real Business Outcomes
+                Specialized Digital Services Structured for Real Business
+                Outcomes
               </h2>
             </div>
             <Link
@@ -24,6 +26,10 @@ export function ServicesGridSection() {
               Compare All Service Scopes
             </Link>
           </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll className="mt-10" delayMs={60}>
+          <ServicesInteractiveShowcase services={servicesData} />
         </RevealOnScroll>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">

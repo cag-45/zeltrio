@@ -2,9 +2,9 @@ import type { CompanyPrinciple, StandardMetric } from "@/types";
 
 export const companyStory = {
   headline:
-    "Disciplined Digital Systems Built for Clarity, Speed, and Measurable Business Growth",
+    "Disciplined Digital Systems Built to Accelerate Your Business Growth",
   introduction:
-    "Zeltrio Digital Service partners with founders, growing companies, and aspiring creators to bridge the gap between strong visual presentation and dependable technical execution. Rather than treating websites, search optimization, digital marketing, and business automation as disconnected tasks, we engineer them as one cohesive system.",
+    "Zeltrio Digital Services partners with founders, growing companies, and aspiring creators to bridge the gap between strong visual presentation and dependable technical execution. Rather than treating websites, search optimization, digital marketing, and business automation as disconnected tasks, we engineer them as one cohesive system.",
   philosophy:
     "Whether we are rebuilding an enterprise storefront or helping you start a new influencer and creator journey with the help of the Zeltrio platform in one go, our practice focuses on clean architecture, rapid software delivery, and practical automation that saves hours every week.",
 };

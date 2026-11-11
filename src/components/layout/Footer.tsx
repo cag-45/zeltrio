@@ -7,36 +7,48 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-obsidian-border bg-obsidian text-canvas">
+    <footer className="border-t border-navy-border bg-navy-deep text-canvas">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="text-left lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-4">
               <BrandLogo size="md" />
-              <div className="text-left">
+              <div>
                 <p className="text-xl font-bold tracking-tight text-canvas">
                   {siteConfig.brandName}
                 </p>
-                <p className="text-sm font-medium text-zeltrio-bright">
-                  Digital Service
+                <p className="text-sm font-semibold text-zeltrio-bright">
+                  {siteConfig.subtitle}
                 </p>
               </div>
             </Link>
 
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-canvas/75">
+            <p className="mt-5 text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
+              {siteConfig.tagline}
+            </p>
+
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-canvas/80">
               {siteConfig.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-5 text-xs font-semibold tracking-widest uppercase text-zeltrio-bright">
-              {siteConfig.taglineParts.map((word) => (
-                <span key={word}>{word}</span>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {siteConfig.socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost-navy px-4 py-2 text-xs uppercase tracking-wider"
+                >
+                  {social.name}
+                </a>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-7">
+          <div className="grid gap-8 text-left sm:grid-cols-3 lg:col-span-8">
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
+              <h2 className="text-xs font-bold tracking-widest uppercase text-canvas/60">
                 Services
               </h2>
               <ul className="mt-4 space-y-3">
@@ -54,7 +66,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
+              <h2 className="text-xs font-bold tracking-widest uppercase text-canvas/60">
                 Company
               </h2>
               <ul className="mt-4 space-y-3">
@@ -72,11 +84,11 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold tracking-widest uppercase text-canvas/60">
+              <h2 className="text-xs font-bold tracking-widest uppercase text-canvas/60">
                 Inquiry Desk
               </h2>
               <ul className="mt-4 space-y-3 text-sm text-canvas/85">
-                <li>
+                <li className="font-medium">
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </li>
                 {siteConfig.inquiryEmails.map((email) => (
@@ -89,10 +101,10 @@ export function Footer() {
                     </a>
                   </li>
                 ))}
-                <li className="pt-1">
+                <li className="pt-2">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-md border border-zeltrio-bright/50 bg-obsidian-soft px-4 py-2 text-xs font-semibold uppercase tracking-wider text-canvas transition-all duration-200 hover:-translate-y-0.5 hover:border-zeltrio-bright hover:bg-zeltrio"
+                    className="btn-primary w-full px-4 py-2.5 text-xs uppercase tracking-wider"
                   >
                     Request Proposal
                   </Link>
@@ -102,7 +114,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-obsidian-border pt-8 text-xs text-canvas/65 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-navy-border pt-8 text-xs text-canvas/70 sm:flex-row sm:items-center">
           <p>
             Copyright {currentYear} {siteConfig.legalName}. All Rights Reserved.
           </p>

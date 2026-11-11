@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
+import { BackgroundPhoto } from "@/components/brand/BackgroundPhoto";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import { ServicesInteractiveShowcase } from "@/components/home/ServicesInteractiveShowcase";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Digital Agency Services",
   description:
-    "Explore Website Development, SEO Services, Digital Marketing including Influencer and Creator Launch Journeys, and Business Automation delivered by Zeltrio Digital Service.",
+    "Explore Website Development, SEO Services, Digital Marketing including Influencer and Creator Launch Journeys, and Business Automation delivered by Zeltrio Digital Services.",
   path: "/services",
   keywords: [
     "website development",
@@ -31,8 +34,21 @@ export default function ServicesPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="absolute inset-0">
+          <BackgroundPhoto
+            src={siteConfig.studioBackgroundPath}
+            alt="Zeltrio Digital Services team reviewing design and SEO execution plans"
+            priority
+            className="opacity-14"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
             Service Directory
           </p>
@@ -49,7 +65,11 @@ export default function ServicesPage() {
       </section>
 
       <section className="bg-surface py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
+          <RevealOnScroll>
+            <ServicesInteractiveShowcase services={servicesData} />
+          </RevealOnScroll>
+
           <div className="grid gap-8 md:grid-cols-2">
             {servicesData.map((service, idx) => (
               <RevealOnScroll key={service.slug} delayMs={idx * 80}>

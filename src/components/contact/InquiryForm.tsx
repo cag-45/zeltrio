@@ -115,7 +115,7 @@ export function InquiryForm() {
         setIsSuccess(true);
         setStatusMessage(
           apiResult.message ||
-          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Service."
+          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Services."
         );
         setFormState(initialFormState);
         return;
@@ -252,16 +252,19 @@ export function InquiryForm() {
             id="fullName"
             name="fullName"
             type="text"
+            autoComplete="name"
             required
+            aria-invalid={Boolean(fieldErrors.fullName)}
+            aria-describedby={fieldErrors.fullName ? "fullName-error" : undefined}
             value={formState.fullName}
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, fullName: e.target.value }))
             }
             placeholder="Enter Your Full Name"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.fullName ? (
-            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
+            <p id="fullName-error" className="mt-1.5 text-xs font-semibold text-zeltrio">
               {fieldErrors.fullName}
             </p>
           ) : null}
@@ -278,7 +281,12 @@ export function InquiryForm() {
             id="businessEmail"
             name="businessEmail"
             type="email"
+            autoComplete="email"
             required
+            aria-invalid={Boolean(fieldErrors.businessEmail)}
+            aria-describedby={
+              fieldErrors.businessEmail ? "businessEmail-error" : undefined
+            }
             value={formState.businessEmail}
             onChange={(e) =>
               setFormState((prev) => ({
@@ -287,10 +295,13 @@ export function InquiryForm() {
               }))
             }
             placeholder="Enter Your Email Address"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.businessEmail ? (
-            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
+            <p
+              id="businessEmail-error"
+              className="mt-1.5 text-xs font-semibold text-zeltrio"
+            >
               {fieldErrors.businessEmail}
             </p>
           ) : null}
@@ -307,12 +318,13 @@ export function InquiryForm() {
             id="companyName"
             name="companyName"
             type="text"
+            autoComplete="organization"
             value={formState.companyName}
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, companyName: e.target.value }))
             }
             placeholder="Enter Company or Creator Name"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
           />
         </div>
 
@@ -333,7 +345,7 @@ export function InquiryForm() {
                 serviceInterest: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm"
           >
             {servicesData.map((service) => (
               <option key={service.slug} value={service.title}>
@@ -366,7 +378,7 @@ export function InquiryForm() {
                 projectTimeline: e.target.value,
               }))
             }
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm"
           >
             {timelineOptions.map((option) => (
               <option key={option} value={option}>
@@ -388,6 +400,10 @@ export function InquiryForm() {
             name="projectDetails"
             rows={5}
             required
+            aria-invalid={Boolean(fieldErrors.projectDetails)}
+            aria-describedby={
+              fieldErrors.projectDetails ? "projectDetails-error" : undefined
+            }
             value={formState.projectDetails}
             onChange={(e) =>
               setFormState((prev) => ({
@@ -396,10 +412,13 @@ export function InquiryForm() {
               }))
             }
             placeholder="Describe Your Website, Search Optimization, Influencer Launch, Digital Marketing, or Automation Goals"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink transition-colors focus:border-zeltrio focus:bg-canvas placeholder:text-muted"
+            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-zeltrio focus:bg-canvas sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.projectDetails ? (
-            <p className="mt-1.5 text-xs font-semibold text-zeltrio">
+            <p
+              id="projectDetails-error"
+              className="mt-1.5 text-xs font-semibold text-zeltrio"
+            >
               {fieldErrors.projectDetails}
             </p>
           ) : null}

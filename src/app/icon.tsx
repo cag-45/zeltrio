@@ -18,11 +18,11 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "9999px",
-          backgroundColor: "#05080f",
-          border: "2px solid #0095ff",
-          color: "#ffffff",
+          backgroundColor: "#ffffff",
+          border: "3px solid #0066ff",
+          color: "#061a40",
           fontSize: 18,
-          fontWeight: 700,
+          fontWeight: 800,
           fontFamily: "sans-serif",
         }}
       >

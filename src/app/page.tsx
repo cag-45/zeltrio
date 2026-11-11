@@ -5,14 +5,17 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { ServicesGridSection } from "@/components/home/ServicesGridSection";
 import { MethodologySection } from "@/components/home/MethodologySection";
 import { StandardsSection } from "@/components/home/StandardsSection";
+import { CustomerReviewsSection } from "@/components/home/CustomerReviewsSection";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Zeltrio Digital Service for Websites, SEO, Marketing, and Automation",
+  title:
+    "Zeltrio Digital Services for Websites, SEO, Marketing, and Automation",
   description: siteConfig.description,
   path: "/",
   keywords: [
     "digital agency",
+    "Zeltrio Digital Services",
     "website development agency",
     "SEO services",
     "digital marketing agency",
@@ -28,6 +31,7 @@ export default function HomePage() {
       <ServicesGridSection />
       <MethodologySection />
       <StandardsSection />
+      <CustomerReviewsSection />
       <CallToActionSection />
     </>
   );

@@ -11,10 +11,10 @@ export const servicesData: ServiceDefinition[] = [
     headline:
       "High Speed Business Websites and Digital Storefronts Built for Conversion and Longevity",
     overview:
-      "Your website is the central pillar of your commercial credibility. Zeltrio Digital Service designs and engineers custom business websites, targeted campaign landing pages, curated portfolios, electronic commerce storefronts, and full architectural redesigns. Every project is built on modern server rendered infrastructure with strict semantic markup, responsive layout precision, and sub second page transitions.",
+      "Your website is the central pillar of your commercial credibility. Zeltrio Digital Services designs and engineers custom business websites, targeted campaign landing pages, curated portfolios, electronic commerce storefronts, and full architectural redesigns. Every project is built on modern server rendered infrastructure with strict semantic markup, responsive layout precision, and sub second page transitions.",
     imagePath: "/images/service-website-development.jpg",
     imageAlt:
-      "Modern laptop resting on a solid oak studio table displaying a structured business website layout",
+      "Web engineer and product designer collaborating over a corporate website layout on an open laptop in a bright modern agency studio",
     idealFor: [
       "Growing companies launching an authoritative primary web presence",
       "Service firms replacing slow or outdated template websites",
@@ -52,7 +52,7 @@ export const servicesData: ServiceDefinition[] = [
     timeline: "Two to Five Weeks",
     seoTitle: "Website Development Services",
     seoDescription:
-      "Custom business websites, landing pages, portfolios, electronic commerce storefronts, and full redesigns engineered for speed and conversion by Zeltrio Digital Service.",
+      "Custom business websites, landing pages, portfolios, electronic commerce storefronts, and full redesigns engineered for speed and conversion by Zeltrio Digital Services.",
     keywords: [
       "business website development",
       "landing page design",
@@ -87,10 +87,10 @@ export const servicesData: ServiceDefinition[] = [
     headline:
       "Search Architecture and Organic Visibility Systems Built to Capture High Intent Demand",
     overview:
-      "Consistent organic traffic comes from aligning technical site health, search intent, and local authority. Zeltrio Digital Service executes deep keyword research, disciplined on page optimization, technical crawlability improvements, local search positioning, and complete Google Business Profile management so qualified buyers find your company first.",
+      "Consistent organic traffic comes from aligning technical site health, search intent, and local authority. Zeltrio Digital Services executes deep keyword research, disciplined on page optimization, technical crawlability improvements, local search positioning, and complete Google Business Profile management so qualified buyers find your company first.",
     imagePath: "/images/service-seo-services.jpg",
     imageAlt:
-      "Laptop showing clean organic search traffic analytics beside a handwritten search strategy notebook on an oak desk",
+      "Search optimization specialist reviewing organic search growth charts on a laptop and writing strategy notes at a sunlit oak agency desk",
     idealFor: [
       "Regional businesses seeking top visibility in local map packs",
       "Companies competing for commercial service keywords in search results",
@@ -128,7 +128,7 @@ export const servicesData: ServiceDefinition[] = [
     timeline: "Two Weeks Foundation and Ongoing Growth",
     seoTitle: "SEO Services and Search Optimization",
     seoDescription:
-      "Comprehensive keyword research, on page SEO, technical SEO, local search positioning, and Google Business Profile optimization by Zeltrio Digital Service.",
+      "Comprehensive keyword research, on page SEO, technical SEO, local search positioning, and Google Business Profile optimization by Zeltrio Digital Services.",
     keywords: [
       "keyword research agency",
       "on page SEO service",
@@ -167,7 +167,7 @@ export const servicesData: ServiceDefinition[] = [
       "Effective digital marketing turns attention into genuine brand authority. Whether you are an established company scaling paid acquisition or an ambitious individual ready to start a new influencer and creator journey with the help of the Zeltrio platform in one go, our team delivers cohesive Instagram management, high craft social media creatives, structured content strategy, targeted paid advertising, and measurable lead generation funnels.",
     imagePath: "/images/service-digital-marketing.jpg",
     imageAlt:
-      "Creative studio worktable with printed campaign layout cards, editorial color swatches, laptop, and tablet in natural light",
+      "Digital marketing strategist and content creator collaborating at a sunlit production desk with a camera, tablet campaign previews, and navy brand swatches",
     idealFor: [
       "Aspiring influencers and creators starting a complete brand and content journey in one go",
       "Consumer and service brands building consistent Instagram authority",
@@ -240,10 +240,10 @@ export const servicesData: ServiceDefinition[] = [
     headline:
       "Reliable Client Communication Workflows That Respond Immediately and Eliminate Manual Bottlenecks",
     overview:
-      "Winning new clients often depends on speed and consistency of follow up. Zeltrio Digital Service builds practical business automation spanning structured WhatsApp workflows, centralized enquiry intake, automated appointment booking, timely follow up sequences, and seamless customer relationship management integrations.",
+      "Winning new clients often depends on speed and consistency of follow up. Zeltrio Digital Services builds practical business automation spanning structured WhatsApp workflows, centralized enquiry intake, automated appointment booking, timely follow up sequences, and seamless customer relationship management integrations.",
     imagePath: "/images/service-business-automation.jpg",
     imageAlt:
-      "Hands holding a modern smartphone displaying a clean client messaging and consultation appointment booking interface",
+      "Business automation consultant testing smartphone appointment booking flows beside a laptop showing a live CRM dashboard in an architectural office",
     idealFor: [
       "Service agencies and clinics managing high daily WhatsApp inquiries",
       "Consultancies losing leads due to delayed manual responses",
@@ -281,7 +281,7 @@ export const servicesData: ServiceDefinition[] = [
     timeline: "One to Three Weeks",
     seoTitle: "Business Automation and WhatsApp Workflows",
     seoDescription:
-      "WhatsApp automation, enquiry management, appointment booking, automated follow ups, and CRM integrations built by Zeltrio Digital Service.",
+      "WhatsApp automation, enquiry management, appointment booking, automated follow ups, and CRM integrations built by Zeltrio Digital Services.",
     keywords: [
       "WhatsApp business automation",
       "enquiry management workflow",

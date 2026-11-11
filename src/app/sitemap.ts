@@ -12,7 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 1.0,
-      images: [buildAbsoluteUrl(siteConfig.logoPath)],
+      images: [
+        buildAbsoluteUrl(siteConfig.logoPath),
+        buildAbsoluteUrl(siteConfig.heroBackgroundPath),
+      ],
     },
     {
       url: buildAbsoluteUrl("/services"),

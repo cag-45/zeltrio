@@ -33,8 +33,8 @@ export function RevealOnScroll({
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -32px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -28px 0px",
       }
     );
 
@@ -54,6 +54,62 @@ export function RevealOnScroll({
       } ${className}`}
     >
       {children}
+    </div>
+  );
+}
+
+export function ScrollProgressBar() {
+  const barRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) {
+      return;
+    }
+
+    let rafId = 0;
+
+    const updateProgress = () => {
+      rafId = 0;
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+
+      if (barRef.current) {
+        barRef.current.style.transform = `scaleX(${ratio})`;
+      }
+    };
+
+    const onScroll = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(updateProgress);
+      }
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    return () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5 bg-transparent"
+    >
+      <div
+        ref={barRef}
+        className="h-full w-full origin-left bg-zeltrio will-change-transform"
+        style={{ transform: "scaleX(0)" }}
+      />
     </div>
   );
 }

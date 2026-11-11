@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
+import { BackgroundPhoto } from "@/components/brand/BackgroundPhoto";
 import { InquiryForm } from "@/components/contact/InquiryForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
@@ -9,7 +10,7 @@ import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact and Project Consultation",
   description:
-    "Start a project with Zeltrio Digital Service. Request a consultation for Website Development, SEO Services, Digital Marketing, Influencer Launches, or Business Automation.",
+    "Start a project with Zeltrio Digital Services. Request a consultation for Website Development, SEO Services, Digital Marketing, Influencer Launches, or Business Automation.",
   path: "/contact",
   keywords: [
     "contact Zeltrio",
@@ -51,8 +52,21 @@ export default function ContactPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="absolute inset-0">
+          <BackgroundPhoto
+            src={siteConfig.heroBackgroundPath}
+            alt="Zeltrio Digital Services team reviewing client briefs in natural studio light"
+            priority
+            className="opacity-14"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
             Consultation Desk
           </p>
@@ -95,20 +109,20 @@ export default function ContactPage() {
             </RevealOnScroll>
 
             <RevealOnScroll delayMs={100}>
-              <div className="rounded-2xl border border-obsidian-border bg-obsidian p-7 text-canvas">
+              <div className="rounded-2xl border border-navy-border bg-navy p-7 text-canvas">
                 <p className="text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
                   Direct Inquiry Channels
                 </p>
                 <h2 className="mt-2 text-xl font-bold">
                   {siteConfig.legalName}
                 </h2>
-                <p className="mt-2 text-sm leading-relaxed text-canvas/75">
+                <p className="mt-2 text-sm leading-relaxed text-canvas/80">
                   Serving businesses and creators from {siteConfig.businessCity}
                   , {siteConfig.businessCountry} and globally through remote
                   delivery.
                 </p>
 
-                <div className="mt-5 space-y-2 border-t border-obsidian-border pt-5 text-sm">
+                <div className="mt-5 space-y-2 border-t border-navy-border pt-5 text-sm">
                   <p className="text-xs font-bold tracking-wider uppercase text-canvas/60">
                     Primary Desk Emails
                   </p>
@@ -124,13 +138,27 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-6 space-y-3">
                   <a
                     href={siteConfig.inquiryMailtoHref}
                     className="btn-primary w-full px-4 py-3 text-xs uppercase tracking-wider"
                   >
                     Compose Direct Inquiry Email
                   </a>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    {siteConfig.socialLinks.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-ghost-navy px-3 py-2.5 text-xs uppercase tracking-wider"
+                      >
+                        {social.name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </RevealOnScroll>

@@ -14,6 +14,7 @@ export function buildOrganizationSchema() {
     logo: buildAbsoluteUrl(siteConfig.logoPath),
     image: buildAbsoluteUrl(siteConfig.logoPath),
     email: siteConfig.contactEmail,
+    sameAs: siteConfig.socialLinks.map((social) => social.href),
     contactPoint: siteConfig.inquiryEmails.map((email) => ({
       "@type": "ContactPoint",
       contactType: "customer service",

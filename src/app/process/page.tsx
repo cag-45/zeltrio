@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 import { processPhases } from "@/data/process";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
+import { BackgroundPhoto } from "@/components/brand/BackgroundPhoto";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
@@ -9,7 +11,7 @@ import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 export const metadata: Metadata = buildPageMetadata({
   title: "Our Delivery Process",
   description:
-    "How Zeltrio Digital Service plans, designs, engineers, and launches websites, search optimization, digital marketing, creator launches, and business automation.",
+    "How Zeltrio Digital Services plans, designs, engineers, and launches websites, search optimization, digital marketing, creator launches, and business automation.",
   path: "/process",
   keywords: [
     "agency workflow",
@@ -29,8 +31,21 @@ export default function ProcessPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="absolute inset-0">
+          <BackgroundPhoto
+            src={siteConfig.studioBackgroundPath}
+            alt="Zeltrio Digital Services team collaborating across strategy and engineering phases"
+            priority
+            className="opacity-14"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
             Execution Framework
           </p>

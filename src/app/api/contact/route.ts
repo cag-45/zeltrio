@@ -78,7 +78,7 @@ export async function POST(request: Request) {
           cc: siteConfig.ccEmail,
         },
         message:
-          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Service.",
+          "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Services.",
       },
       { status: 201 }
     );

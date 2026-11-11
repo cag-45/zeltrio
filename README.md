@@ -1,6 +1,6 @@
-# Zeltrio Digital Service Website
+# Zeltrio Digital Services Website
 
-Official corporate website for **Zeltrio Digital Service** (`Create, Grow, Go Digital`), engineered with Next.js App Router, TypeScript, Tailwind CSS v4, dynamic SEO sitemaps, structured Schema.org JSON-LD, and Vercel deployment configuration.
+Official corporate website for **Zeltrio Digital Services** (`Accelerate Your Business Growth`), engineered with Next.js App Router, TypeScript, Tailwind CSS v4, dynamic SEO sitemaps, structured Schema.org JSON-LD, and Vercel deployment configuration.
 
 ## Architecture Overview
 

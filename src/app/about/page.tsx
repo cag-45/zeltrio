@@ -4,18 +4,19 @@ import { companyPrinciples, companyStory } from "@/data/company";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/schema";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { BackgroundPhoto } from "@/components/brand/BackgroundPhoto";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "About Zeltrio Digital Service",
+  title: "About Zeltrio Digital Services",
   description:
-    "Learn how Zeltrio Digital Service unites Website Engineering, Search Visibility, Influencer and Creator Launches, Digital Marketing, and Business Automation.",
+    "Learn how Zeltrio Digital Services unites Website Engineering, Search Visibility, Influencer and Creator Launches, Digital Marketing, and Business Automation.",
   path: "/about",
   keywords: [
     "about Zeltrio",
-    "Zeltrio Digital Service",
+    "Zeltrio Digital Services",
     "digital agency standards",
     "creator platform launch",
   ],
@@ -31,8 +32,21 @@ export default function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="border-b border-rule bg-canvas py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-rule bg-canvas py-16 sm:py-20">
+        <div className="absolute inset-0">
+          <BackgroundPhoto
+            src={siteConfig.studioBackgroundPath}
+            alt="Zeltrio Digital Services specialists collaborating in a studio workspace"
+            priority
+            className="opacity-14"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/94 to-surface/85"
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="animate-hero-enter lg:col-span-7">
               <p className="text-xs font-bold tracking-widest uppercase text-zeltrio">
@@ -50,17 +64,29 @@ export default function AboutPage() {
             </div>
 
             <div className="animate-hero-enter lg:col-span-5">
-              <div className="flex flex-col items-start rounded-2xl border border-obsidian-border bg-obsidian p-8 text-left text-canvas shadow-lg sm:p-10">
+              <div className="flex flex-col items-start rounded-2xl border border-navy-border bg-navy p-8 text-left text-canvas shadow-lg sm:p-10">
                 <BrandLogo size="hero" priority />
                 <h2 className="mt-6 text-2xl font-bold tracking-tight">
                   {siteConfig.legalName}
                 </h2>
-                <p className="mt-2 text-sm text-canvas/75">
+                <p className="mt-1.5 text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
+                  {siteConfig.tagline}
+                </p>
+                <p className="mt-2 text-sm text-canvas/80">
                   {siteConfig.businessCity}, {siteConfig.businessCountry}
                 </p>
-                <div className="mt-6 flex w-full flex-wrap gap-5 border-t border-obsidian-border pt-6 text-xs font-bold tracking-widest uppercase text-zeltrio-bright">
-                  {siteConfig.taglineParts.map((pillar) => (
-                    <span key={pillar}>{pillar}</span>
+
+                <div className="mt-6 flex w-full flex-wrap gap-3 border-t border-navy-border pt-6">
+                  {siteConfig.socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost-navy px-4 py-2 text-xs uppercase tracking-wider"
+                    >
+                      Follow on {social.name}
+                    </a>
                   ))}
                 </div>
               </div>

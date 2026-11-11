@@ -4,6 +4,13 @@ export interface NavigationItem {
   description?: string;
 }
 
+export interface SocialLinkItem {
+  name: string;
+  handle: string;
+  href: string;
+  description: string;
+}
+
 export interface ServiceDeliverable {
   title: string;
   description: string;
@@ -56,6 +63,18 @@ export interface CompanyPrinciple {
   description: string;
 }
 
+export interface CustomerReview {
+  id: string;
+  clientName: string;
+  roleTitle: string;
+  companyOrChannel: string;
+  serviceCategory: string;
+  ratingText: string;
+  headline: string;
+  quote: string;
+  outcomeBadge: string;
+}
+
 export interface ContactSubmissionPayload {
   fullName: string;
   businessEmail: string;
@@ -64,4 +83,3 @@ export interface ContactSubmissionPayload {
   projectTimeline: string;
   projectDetails: string;
 }
-
