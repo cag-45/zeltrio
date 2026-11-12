@@ -172,10 +172,10 @@ export function ServicesInteractiveShowcase({
               </svg>
             </MagneticLink>
             <MagneticLink
-              href="/contact"
+              href="/contact?topic=website-audit"
               className="btn-secondary px-6 py-3 text-sm"
             >
-              Book Consultation
+              Free Website Audit
             </MagneticLink>
           </div>
         </div>

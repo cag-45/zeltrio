@@ -100,10 +100,10 @@ export function Footer() {
                 ))}
                 <li className="pt-2">
                   <MagneticLink
-                    href="/contact"
+                    href="/contact?topic=website-audit"
                     className="btn-primary w-full px-4 py-2.5 text-xs uppercase tracking-wider"
                   >
-                    Request Proposal
+                    Free Website Audit
                   </MagneticLink>
                 </li>
               </ul>

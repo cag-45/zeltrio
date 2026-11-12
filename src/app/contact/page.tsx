@@ -26,25 +26,35 @@ export const metadata: Metadata = buildPageMetadata({
 const consultationSteps = [
   {
     step: "01",
-    title: "Brief Review",
+    title: "Manual Website & Brief Audit",
     detail:
-      "We read your goals, review any existing website or social channels, and note technical opportunities.",
+      "Send your existing URL or launch idea. A real developer reviews page speed, mobile layout, search structure, and inquiry friction.",
   },
   {
     step: "02",
-    title: "Scope Call",
+    title: "Plain-English Findings",
     detail:
-      "A focused thirty minute conversation to align on deliverables, target timeline, and commercial priorities.",
+      "Within one business day, you receive specific takeaways on what is slowing visitors down and which fixes matter most first.",
   },
   {
     step: "03",
-    title: "Clear Proposal",
+    title: "Clear Build Scope (Optional)",
     detail:
-      "You receive a straightforward written scope, phased delivery calendar, and transparent pricing.",
+      "If you decide to build with Zeltrio, we follow up with a grounded timeline and transparent scope with zero high-pressure sales.",
   },
 ];
 
-export default function ContactPage() {
+interface ContactPageProps {
+  searchParams?: Promise<{ topic?: string }>;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolvedParams = searchParams ? await searchParams : undefined;
+  const isAuditTopic = resolvedParams?.topic === "website-audit";
+  const initialServiceInterest = isAuditTopic
+    ? "Free Website Audit (Speed, SEO & Conversion)"
+    : undefined;
+
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
@@ -70,16 +80,15 @@ export default function ContactPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <p className="animate-hero-enter text-xs font-bold tracking-widest uppercase text-gold">
-            Consultation Desk
+            Free Website Audit & Project Desk
           </p>
           <h1 className="animate-hero-enter-delay-1 mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Tell Us What You Are Building and Where Your Growth Needs Momentum
+            Request a Free Website Audit or Scope a New Build
           </h1>
           <p className="animate-hero-enter-delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-slate">
-            Whether you require a new corporate website, technical search
-            optimization, launching a new influencer and creator journey with
-            Zeltrio in one go, or automated client follow up systems, our team
-            responds within one business day.
+            Drop your current website URL for a practical teardown, or tell us
+            about a new service business site or creator launch you want built
+            from scratch. We reply within one business day.
           </p>
         </div>
       </section>
@@ -164,7 +173,10 @@ export default function ContactPage() {
 
           <div className="lg:col-span-7">
             <RevealOnScroll delayMs={80}>
-              <InquiryForm inquiryEmails={siteConfig.inquiryEmails} />
+              <InquiryForm
+                inquiryEmails={siteConfig.inquiryEmails}
+                initialServiceInterest={initialServiceInterest}
+              />
             </RevealOnScroll>
           </div>
         </div>

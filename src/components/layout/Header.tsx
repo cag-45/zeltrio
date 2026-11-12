@@ -45,10 +45,10 @@ export function Header() {
           </div>
 
           <MagneticLink
-            href="/contact"
+            href="/contact?topic=website-audit"
             className="btn-primary px-5 py-2.5 text-sm"
           >
-            <span>Start a Project</span>
+            <span>Free Site Audit</span>
             <svg
               width="15"
               height="15"

@@ -50,16 +50,17 @@ export default function ServicesPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 text-left sm:px-6 lg:px-8">
           <p className="animate-hero-enter text-xs font-bold tracking-widest uppercase text-gold">
-            Service Directory
+            Website-First Service Scope
           </p>
           <h1 className="animate-hero-enter-delay-1 mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Four Integrated Practices Designed to Build, Rank, Market, and
-            Automate Your Business
+            Website Development at the Center — With Search, Content, and
+            Automation Wired In
           </h1>
           <p className="animate-hero-enter-delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-slate">
-            Every engagement can stand alone or combine across disciplines so
-            your website, organic search footprint, influencer or brand launch,
-            and client follow up systems operate seamlessly together.
+            Designed for local service businesses and founder-led or creator
+            brands. Start with a fast, conversion-focused website—or add our
+            supporting SEO, social launch, and automation systems so everything
+            works under one roof.
           </p>
         </div>
       </section>

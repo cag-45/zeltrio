@@ -12,31 +12,31 @@ export const companyStory = {
 export const standardMetrics: StandardMetric[] = [
   {
     code: "01",
-    label: "Core Delivery Pillars",
-    value: "Four Integrated Practices",
+    label: "Flagship Discipline",
+    value: "Website Engineering First",
     detail:
-      "Website Development, SEO Services, Digital Marketing, and Business Automation aligned under one unified engineering roof.",
+      "Every engagement starts with a fast, well-structured website built to turn visitors into inquiries—then layers in SEO, marketing, or automation where needed.",
   },
   {
     code: "02",
-    label: "Performance Target",
-    value: "Sub Second Initial Paint",
+    label: "Measured Pre-Launch Checks",
+    value: "95+ Lighthouse Lab Target",
     detail:
-      "Server rendered pages, optimized image formats, and zero heavy external script bloat for instant response on phones and tablets.",
+      "Server-rendered Next.js routes, properly sized WebP/AVIF media, semantic markup, and clean script budgets checked via Lighthouse and Core Web Vitals tools before launch.",
   },
   {
     code: "03",
-    label: "Creator Acceleration",
-    value: "One Go Launch Ready",
+    label: "Focused Client Fit",
+    value: "Service Firms & Creator Brands",
     detail:
-      "Start a new influencer and creator journey with the help of the Zeltrio platform in one go with unified identity, content strategy, and web hub.",
+      "Built specifically for local/regional service businesses needing steady leads, and founder-led brands or creators launching a clean web and content hub in one go.",
   },
   {
     code: "04",
-    label: "Response Systems",
-    value: "Continuous Lead Capture",
+    label: "Clear First Step",
+    value: "1-Day Free Website Audit",
     detail:
-      "Structured inquiry intake, direct email routing, and WhatsApp forwarding ensure no prospect or brand collaboration request is missed.",
+      "Send your live URL or launch brief for a practical written teardown of speed bottlenecks, mobile UX friction, and search structure—backed by direct email and WhatsApp routing.",
   },
 ];
 

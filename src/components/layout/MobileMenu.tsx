@@ -72,11 +72,11 @@ export function MobileMenu({ items }: MobileMenuProps) {
             </div>
 
             <Link
-              href="/contact"
+              href="/contact?topic=website-audit"
               onClick={() => setIsOpen(false)}
               className="btn-gold mt-4 w-full px-5 py-3 text-sm"
             >
-              Start a Project
+              Get a Free Website Audit
             </Link>
           </nav>
         </div>

@@ -11,8 +11,8 @@ interface CallToActionSectionProps {
 }
 
 export function CallToActionSection({
-  title = "Ready to Accelerate Your Business Growth?",
-  description = "Share your business or creator goals with Zeltrio Digital Services and receive a structured project scope, timeline estimate, and recommended technical architecture.",
+  title = "Want Honest Feedback on Your Current Website Before Spending a Rupee?",
+  description = "Send us your website URL or new launch idea. Within one business day, we send back a plain-English audit covering speed issues, mobile conversion bottlenecks, and practical fixes.",
 }: CallToActionSectionProps) {
   return (
     <section className="relative overflow-hidden border-t border-rule bg-canvas/45 py-16 backdrop-blur-[2px] sm:py-20">
@@ -42,7 +42,7 @@ export function CallToActionSection({
             <div className="relative lg:flex lg:items-center lg:justify-between lg:gap-12">
               <div className="max-w-2xl">
                 <p className="text-xs font-bold tracking-widest uppercase text-gold">
-                  Start Your Project
+                  Free Website Audit · Zero Obligation
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
                   {title}
@@ -54,10 +54,10 @@ export function CallToActionSection({
 
               <div className="mt-8 flex shrink-0 flex-wrap items-center gap-3.5 lg:mt-0">
                 <MagneticLink
-                  href="/contact"
+                  href="/contact?topic=website-audit"
                   className="btn-gold px-7 py-3.5 text-sm"
                 >
-                  <span>Book Consultation</span>
+                  <span>Request Free Website Audit</span>
                   <svg
                     width="15"
                     height="15"
@@ -77,7 +77,7 @@ export function CallToActionSection({
                   href="/services"
                   className="btn-secondary px-6 py-3.5 text-sm"
                 >
-                  Review Services
+                  Explore Services
                 </MagneticLink>
                 <SocialLogoButtons size="md" />
               </div>

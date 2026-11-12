@@ -63,14 +63,26 @@ export interface CompanyPrinciple {
   description: string;
 }
 
-export interface CustomerReview {
+export interface SampleProjectSpec {
+  metric: string;
+  value: string;
+}
+
+export interface SampleProject {
   id: string;
-  clientName: string;
-  serviceCategory: string;
-  ratingText: string;
-  headline: string;
-  quote: string;
-  outcomeBadge: string;
+  slug: string;
+  label: string;
+  niche: string;
+  title: string;
+  summary: string;
+  challenge: string;
+  solution: string;
+  deliverables: string[];
+  measuredSpecs: SampleProjectSpec[];
+  stack: string[];
+  imagePath: string;
+  imageAlt: string;
+  disclaimer: string;
 }
 
 export interface ContactSubmissionPayload {

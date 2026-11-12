@@ -45,13 +45,20 @@ function buildDirectMailtoHref(
 
 interface InquiryFormProps {
   inquiryEmails?: readonly string[];
+  initialServiceInterest?: string;
 }
 
 export function InquiryForm({
   inquiryEmails = siteConfig.inquiryEmails,
+  initialServiceInterest,
 }: InquiryFormProps) {
-  const [formState, setFormState] =
-    useState<ContactSubmissionPayload>(initialFormState);
+  const [formState, setFormState] = useState<ContactSubmissionPayload>(() => ({
+    ...initialFormState,
+    serviceInterest:
+      initialServiceInterest ||
+      servicesData[0]?.title ||
+      "Website Development",
+  }));
   const [honeypot, setHoneypot] = useState("");
   const [fieldErrors, setFieldErrors] = useState<
     Partial<Record<keyof ContactSubmissionPayload, string>>
@@ -356,6 +363,9 @@ export function InquiryForm({
             }
             className="mt-2 w-full rounded-lg border border-rule-strong bg-surface px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm"
           >
+            <option value="Free Website Audit (Speed, SEO & Conversion)">
+              Free Website Audit (Speed, SEO & Conversion)
+            </option>
             {servicesData.map((service) => (
               <option key={service.slug} value={service.title}>
                 {service.title}
@@ -420,7 +430,7 @@ export function InquiryForm({
                 projectDetails: e.target.value,
               }))
             }
-            placeholder="Describe Your Website, Search Optimization, Influencer Launch, Digital Marketing, or Automation Goals"
+            placeholder="Share your current website URL for a free audit, or describe what you want built (service business site, creator launch hub, SEO, or WhatsApp/CRM automation)"
             className="mt-2 w-full rounded-lg border border-rule-strong bg-surface/90 px-4 py-3 text-base text-ink transition-colors focus:border-gold focus:bg-surface-elevated sm:text-sm placeholder:text-muted"
           />
           {fieldErrors.projectDetails ? (

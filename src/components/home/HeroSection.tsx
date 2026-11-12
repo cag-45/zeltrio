@@ -8,12 +8,12 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { MagneticLink } from "@/components/ui/MagneticLink";
 
 const marqueeCapabilities = [
-  "Custom Website Engineering",
+  "Flagship Website Engineering",
+  "Local Service & Clinic Sites",
+  "Founder & Creator Brand Hubs",
+  "95+ Lighthouse Lab Targets",
   "Technical & Local Search SEO",
-  "Influencer & Creator Launch Platform",
-  "Instagram Creative Systems",
   "WhatsApp & CRM Automation",
-  "Sub-Second Edge Performance",
 ];
 
 export function HeroSection() {
@@ -53,31 +53,31 @@ export function HeroSection() {
               </span>
               <span className="hidden h-3 w-px bg-rule-strong sm:inline-block" />
               <span className="hidden text-xs font-medium text-gold sm:inline">
-                Digital Engineering & Creator Launch
+                Websites for Service Firms & Creator Brands
               </span>
             </div>
 
-            <h1 className="animate-hero-enter-delay-1 mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.6rem]">
-              {siteConfig.tagline}{" "}
+            <h1 className="animate-hero-enter-delay-1 mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.55rem]">
+              Custom Websites Built to{" "}
               <span className="block font-serif font-medium italic text-gold sm:inline">
-                With Precision Websites, Search, and Automation
+                Bring Real Inquiries, Not Just Page Views
               </span>
             </h1>
 
             <p className="animate-hero-enter-delay-2 mt-6 max-w-2xl text-base leading-relaxed text-slate sm:text-lg">
-              Zeltrio Digital Services partners with growing companies to build
-              fast websites, improve search engine rankings, manage high impact
-              campaigns, and automate client workflows. We also help you start a
-              new influencer and creator journey with the help of the Zeltrio
-              platform in one go.
+              We focus on building fast, clear Next.js websites for two groups:
+              local service businesses that need steady bookings, and
+              founder-led or creator brands launching in one go. Search
+              structure, social creative, and lead automation are wired in to
+              support your site—not distract from it.
             </p>
 
             <div className="animate-hero-enter-delay-3 mt-8 flex flex-wrap items-center gap-4">
               <MagneticLink
-                href="/contact"
+                href="/contact?topic=website-audit"
                 className="btn-gold px-7 py-3.5 text-sm"
               >
-                <span>Request a Consultation</span>
+                <span>Get a Free Website Audit</span>
                 <svg
                   width="16"
                   height="16"
@@ -95,10 +95,10 @@ export function HeroSection() {
               </MagneticLink>
 
               <MagneticLink
-                href="/services"
+                href="#sample-projects"
                 className="btn-secondary px-7 py-3.5 text-sm"
               >
-                Explore All Services
+                View Sample Builds
               </MagneticLink>
             </div>
 
@@ -135,48 +135,62 @@ export function HeroSection() {
                 <BrandLogo size="lg" priority />
                 <div>
                   <p className="text-xs font-bold tracking-widest uppercase text-gold">
-                    {siteConfig.legalName}
+                    Website-First Studio
                   </p>
                   <h2 className="mt-1 font-serif text-xl font-medium leading-snug text-ink sm:text-2xl">
-                    Four Integrated Services to Build and Scale Your Brand
+                    Website Development at the Core, Growth Systems Around It
                   </h2>
                 </div>
               </div>
 
               <div className="mt-4 divide-y divide-rule">
-                {servicesData.map((service) => (
-                  <Link
-                    key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className="group flex items-center justify-between gap-4 py-3.5 transition-all duration-200 hover:pl-1.5"
-                  >
-                    <div>
-                      <p className="font-display text-sm font-bold text-ink transition-colors group-hover:text-gold sm:text-base">
-                        {service.title}
-                      </p>
-                      <p className="mt-0.5 text-xs font-medium text-muted">
-                        {service.timeline}
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-lg border border-rule-strong bg-surface-elevated px-3 py-1.5 text-xs font-bold tracking-widest text-zeltrio-bright transition-all duration-200 group-hover:border-gold/60 group-hover:bg-gold group-hover:text-canvas">
-                      <span>{service.index}</span>
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                        className="transition-transform duration-200 group-hover:translate-x-0.5"
-                      >
-                        <path d="m9 18 6-6-6-6" />
-                      </svg>
-                    </span>
-                  </Link>
-                ))}
+                {servicesData.map((service) => {
+                  const isFlagship = service.slug === "website-development";
+                  return (
+                    <Link
+                      key={service.slug}
+                      href={`/services/${service.slug}`}
+                      className={`group flex items-center justify-between gap-4 py-3.5 transition-all duration-200 hover:pl-1.5 ${
+                        isFlagship ? "-mx-2 rounded-xl bg-gold-tint/35 px-2" : ""
+                      }`}
+                    >
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="font-display text-sm font-bold text-ink transition-colors group-hover:text-gold sm:text-base">
+                            {service.title}
+                          </p>
+                          {isFlagship ? (
+                            <span className="rounded-full border border-gold/40 bg-gold-tint px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase text-gold-bright">
+                              Core Lead
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="mt-0.5 text-xs font-medium text-muted">
+                          {isFlagship
+                            ? `Flagship Build · ${service.timeline}`
+                            : `Growth Layer · ${service.timeline}`}
+                        </p>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 rounded-lg border border-rule-strong bg-surface-elevated px-3 py-1.5 text-xs font-bold tracking-widest text-zeltrio-bright transition-all duration-200 group-hover:border-gold/60 group-hover:bg-gold group-hover:text-canvas">
+                        <span>{service.index}</span>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                          className="transition-transform duration-200 group-hover:translate-x-0.5"
+                        >
+                          <path d="m9 18 6-6-6-6" />
+                        </svg>
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
 
               <div className="mt-5 rounded-xl border border-gold/25 bg-linear-to-br from-surface-elevated via-navy to-surface p-5">

@@ -11,7 +11,7 @@ export const servicesData: ServiceDefinition[] = [
     headline:
       "High Speed Business Websites and Digital Storefronts Built for Conversion and Longevity",
     overview:
-      "Your website is the central pillar of your commercial credibility. Zeltrio Digital Services designs and engineers custom business websites, targeted campaign landing pages, curated portfolios, electronic commerce storefronts, and full architectural redesigns. Every project is built on modern server rendered infrastructure with strict semantic markup, responsive layout precision, and sub second page transitions.",
+      "Your website is the central pillar of your commercial credibility. Zeltrio Digital Services designs and engineers custom business websites, targeted campaign landing pages, curated portfolios, electronic commerce storefronts, and full architectural redesigns. Every project is built on modern server-rendered infrastructure with strict semantic markup, responsive layout precision, and verified Core Web Vitals checks before launch.",
     imagePath: "/images/service-website-development.jpg",
     imageAlt:
       "Web engineer and product designer collaborating over a corporate website layout on an open laptop in a bright modern agency studio",

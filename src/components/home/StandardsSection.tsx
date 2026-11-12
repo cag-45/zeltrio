@@ -23,10 +23,10 @@ export function StandardsSection() {
         <RevealOnScroll>
           <div className="max-w-2xl text-left">
             <p className="text-xs font-bold tracking-widest uppercase text-gold">
-              Agency Standards
+              Measured Engineering Standards
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              Built for Speed, Search Clarity, and Dependable Client Acquisition
+              Verified Pre-Launch Benchmarks Instead of Vague Promises
             </h2>
           </div>
         </RevealOnScroll>

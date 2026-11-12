@@ -15,18 +15,18 @@ export function ServicesGridSection() {
           <div className="flex flex-col justify-between gap-6 border-b border-rule pb-10 text-left md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="text-xs font-bold tracking-widest uppercase text-gold">
-                Agency Capabilities
+                Core Web Build + Supporting Layers
               </p>
               <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-                Specialized Digital Services Structured for Real Business
-                Outcomes
+                We Lead With Website Development, Then Layer Search, Content,
+                and Automation
               </h2>
             </div>
             <MagneticLink
-              href="/services"
+              href="/services/website-development"
               className="btn-secondary shrink-0 px-5 py-2.5 text-sm"
             >
-              Compare All Service Scopes
+              Inspect Website Development
             </MagneticLink>
           </div>
         </RevealOnScroll>

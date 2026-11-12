@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { ServicesGridSection } from "@/components/home/ServicesGridSection";
 import { MethodologySection } from "@/components/home/MethodologySection";
 import { StandardsSection } from "@/components/home/StandardsSection";
-import { CustomerReviewsSection } from "@/components/home/CustomerReviewsSection";
+import { SampleProjectsSection } from "@/components/home/SampleProjectsSection";
 import { CallToActionSection } from "@/components/home/CallToActionSection";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -31,7 +31,7 @@ export default function HomePage() {
       <ServicesGridSection />
       <MethodologySection />
       <StandardsSection />
-      <CustomerReviewsSection />
+      <SampleProjectsSection />
       <CallToActionSection />
     </>
   );
