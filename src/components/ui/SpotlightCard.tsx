@@ -20,19 +20,16 @@ export function SpotlightCard({
   const allowMotionRef = useRef(true);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const syncPreference = () => {
-      allowMotionRef.current = finePointer.matches && !reducedMotion.matches;
+      allowMotionRef.current = !reducedMotion.matches;
     };
 
     syncPreference();
-    finePointer.addEventListener("change", syncPreference);
     reducedMotion.addEventListener("change", syncPreference);
 
     return () => {
-      finePointer.removeEventListener("change", syncPreference);
       reducedMotion.removeEventListener("change", syncPreference);
     };
   }, []);
@@ -78,6 +75,9 @@ export function SpotlightCard({
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
+      onPointerDown={handlePointerMove}
+      onPointerUp={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
       onPointerLeave={handlePointerLeave}
       className={`relative transition-transform duration-300 ease-out will-change-transform ${className}`}
     >

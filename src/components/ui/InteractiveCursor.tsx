@@ -10,7 +10,6 @@ export function InteractiveCursor() {
   const ringRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let mouseX = -100;
@@ -21,6 +20,7 @@ export function InteractiveCursor() {
     let isInteractive = false;
     let isPressed = false;
     let frameId = 0;
+    let touchFadeTimer: ReturnType<typeof setTimeout> | null = null;
 
     const stopLoop = () => {
       if (frameId) {
@@ -40,26 +40,26 @@ export function InteractiveCursor() {
     };
 
     const updateVisuals = () => {
-      if (document.hidden || !isVisible || !finePointer.matches || reducedMotion.matches) {
+      if (document.hidden || !isVisible || reducedMotion.matches) {
         frameId = 0;
         return;
       }
 
-      ringX += (mouseX - ringX) * 0.2;
-      ringY += (mouseY - ringY) * 0.2;
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
 
       if (dotRef.current) {
-        const dotScale = isPressed ? 0.72 : isInteractive ? 1.35 : 1;
+        const dotScale = isPressed ? 0.75 : isInteractive ? 1.4 : 1;
         dotRef.current.style.opacity = "1";
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${dotScale})`;
       }
 
       if (ringRef.current) {
-        const ringScale = isPressed ? 0.85 : isInteractive ? 1.65 : 1;
-        ringRef.current.style.opacity = isInteractive ? "0.9" : "0.48";
+        const ringScale = isPressed ? 0.88 : isInteractive ? 1.7 : 1;
+        ringRef.current.style.opacity = isInteractive ? "0.9" : "0.55";
         ringRef.current.style.borderColor = isInteractive
-          ? "rgba(224, 172, 88, 0.85)"
-          : "rgba(117, 170, 255, 0.65)";
+          ? "rgba(224, 172, 88, 0.9)"
+          : "rgba(117, 170, 255, 0.7)";
         ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${ringScale})`;
       }
 
@@ -67,16 +67,18 @@ export function InteractiveCursor() {
     };
 
     const ensureLoop = () => {
-      if (!frameId && isVisible && !document.hidden && finePointer.matches && !reducedMotion.matches) {
+      if (!frameId && isVisible && !document.hidden && !reducedMotion.matches) {
         frameId = window.requestAnimationFrame(updateVisuals);
       }
     };
 
     const handleMove = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse" || !finePointer.matches || reducedMotion.matches) {
-        hideVisuals();
-        stopLoop();
+      if (reducedMotion.matches) {
         return;
+      }
+      if (touchFadeTimer) {
+        clearTimeout(touchFadeTimer);
+        touchFadeTimer = null;
       }
       mouseX = event.clientX;
       mouseY = event.clientY;
@@ -91,12 +93,38 @@ export function InteractiveCursor() {
       ensureLoop();
     };
 
-    const handleDown = () => {
+    const handleDown = (event: PointerEvent) => {
+      if (reducedMotion.matches) {
+        return;
+      }
+      if (touchFadeTimer) {
+        clearTimeout(touchFadeTimer);
+        touchFadeTimer = null;
+      }
       isPressed = true;
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      if (!isVisible) {
+        ringX = mouseX;
+        ringY = mouseY;
+      }
+      isVisible = true;
+      const target = event.target as HTMLElement | null;
+      isInteractive = Boolean(target && target.closest(INTERACTIVE_SELECTOR));
+      ensureLoop();
     };
 
-    const handleUp = () => {
+    const handleUp = (event: PointerEvent) => {
       isPressed = false;
+      // On touch devices (smartphones and tablets), gently fade out ring after touch ends
+      if (event.pointerType === "touch") {
+        touchFadeTimer = setTimeout(() => {
+          if (!isPressed) {
+            hideVisuals();
+            stopLoop();
+          }
+        }, 450);
+      }
     };
 
     const handleLeave = () => {
@@ -112,7 +140,7 @@ export function InteractiveCursor() {
     };
 
     const handlePreferenceChange = () => {
-      if (!finePointer.matches || reducedMotion.matches) {
+      if (reducedMotion.matches) {
         hideVisuals();
         stopLoop();
       }
@@ -123,17 +151,18 @@ export function InteractiveCursor() {
     window.addEventListener("pointerup", handleUp, { passive: true });
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("visibilitychange", handleVisibility);
-    finePointer.addEventListener("change", handlePreferenceChange);
     reducedMotion.addEventListener("change", handlePreferenceChange);
 
     return () => {
       stopLoop();
+      if (touchFadeTimer) {
+        clearTimeout(touchFadeTimer);
+      }
       window.removeEventListener("pointermove", handleMove);
       window.removeEventListener("pointerdown", handleDown);
       window.removeEventListener("pointerup", handleUp);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("visibilitychange", handleVisibility);
-      finePointer.removeEventListener("change", handlePreferenceChange);
       reducedMotion.removeEventListener("change", handlePreferenceChange);
     };
   }, []);
@@ -141,7 +170,7 @@ export function InteractiveCursor() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-50 hidden overflow-hidden md:block"
+      className="pointer-events-none fixed inset-0 z-[70] overflow-hidden"
     >
       <div
         ref={ringRef}

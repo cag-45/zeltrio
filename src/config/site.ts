@@ -2,12 +2,6 @@ import type { NavigationItem, SocialLinkItem } from "@/types";
 
 const rawSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : undefined) ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : undefined) ||
   "https://www.zeltriodigital.online";
 
 const primaryEmail =
@@ -30,6 +24,7 @@ export const siteConfig = {
     "Zeltrio Digital Services delivers high-speed Website Development, SEO Services, Digital Marketing, Creator Launch Journeys, and Business Automation engineered to accelerate your business growth.",
   url: rawSiteUrl.replace(/\/+$/, ""),
   locale: "en_US",
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID || "GTM-TBXZCSRF",
   contactEmail: primaryEmail,
   ccEmail,
   ccEmails,

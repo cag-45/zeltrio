@@ -2,7 +2,86 @@ import { NextResponse } from "next/server";
 import { siteConfig } from "@/config/site";
 import { validateContactPayload } from "@/lib/validation";
 
+// In-memory sliding rate limiter per client IP
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5;
+const ipRequestCounts = new Map<string, { count: number; expiresAt: number }>();
+
+function isOriginAllowed(originOrReferer: string | null): boolean {
+  if (!originOrReferer) return true;
+  try {
+    const url = new URL(originOrReferer);
+    const hostname = url.hostname.toLowerCase();
+    return (
+      hostname === "www.zeltriodigital.online" ||
+      hostname === "zeltriodigital.online" ||
+      hostname.endsWith(".vercel.app") ||
+      hostname === "localhost" ||
+      hostname === "127.0.0.1"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+
+  // Lazy memory cleanup if map exceeds 400 entries
+  if (ipRequestCounts.size > 400) {
+    for (const [key, entry] of ipRequestCounts.entries()) {
+      if (entry.expiresAt < now) {
+        ipRequestCounts.delete(key);
+      }
+    }
+  }
+
+  const record = ipRequestCounts.get(ip);
+  if (!record || record.expiresAt < now) {
+    ipRequestCounts.set(ip, { count: 1, expiresAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return true;
+  }
+
+  record.count += 1;
+  return false;
+}
+
 export async function POST(request: Request) {
+  // 1. Validate Origin / Referer against allowed domains
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+
+  if (!isOriginAllowed(origin) || !isOriginAllowed(referer)) {
+    return NextResponse.json(
+      { message: "Cross-origin request blocked for security." },
+      { status: 403 }
+    );
+  }
+
+  // 2. Reject payloads exceeding 20KB (guard against resource exhaustion)
+  const contentLength = request.headers.get("content-length");
+  if (contentLength && parseInt(contentLength, 10) > 20480) {
+    return NextResponse.json(
+      { message: "Payload exceeds acceptable size limit." },
+      { status: 413 }
+    );
+  }
+
+  // 3. Client IP rate limiting
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown-ip";
+
+  if (checkRateLimit(clientIp)) {
+    return NextResponse.json(
+      { message: "Too many submission attempts. Please wait 1 minute before retrying." },
+      { status: 429 }
+    );
+  }
+
   let rawBody: unknown;
 
   try {
@@ -68,6 +147,10 @@ export async function POST(request: Request) {
     }
   }
 
+  const responseHeaders = {
+    "Cache-Control": "no-store, max-age=0",
+  };
+
   if (savedToWebhook) {
     return NextResponse.json(
       {
@@ -80,7 +163,7 @@ export async function POST(request: Request) {
         message:
           "Thank You. Your Project Inquiry Has Been Saved and Delivered to Zeltrio Digital Services.",
       },
-      { status: 201 }
+      { status: 201, headers: responseHeaders }
     );
   }
 
@@ -94,6 +177,6 @@ export async function POST(request: Request) {
       },
       message: "Inquiry Validated.",
     },
-    { status: 200 }
+    { status: 200, headers: responseHeaders }
   );
 }

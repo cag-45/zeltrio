@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Outfit, DM_Sans, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -115,7 +116,28 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${dmSans.variable} ${newsreader.variable}`}
     >
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtm.js?id=${siteConfig.gtmId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-manager-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+      </head>
       <body className="relative flex min-h-dvh flex-col bg-canvas text-ink">
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${siteConfig.gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <JsonLd data={buildOrganizationSchema()} />
         <JsonLd data={buildWebsiteSchema()} />
         <InteractiveCanvasBackground />

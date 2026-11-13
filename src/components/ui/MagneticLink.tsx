@@ -22,19 +22,16 @@ export function MagneticLink({
   const allowMagneticRef = useRef(false);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const sync = () => {
-      allowMagneticRef.current = finePointer.matches && !reducedMotion.matches;
+      allowMagneticRef.current = !reducedMotion.matches;
     };
 
     sync();
-    finePointer.addEventListener("change", sync);
     reducedMotion.addEventListener("change", sync);
 
     return () => {
-      finePointer.removeEventListener("change", sync);
       reducedMotion.removeEventListener("change", sync);
     };
   }, []);
@@ -63,6 +60,9 @@ export function MagneticLink({
     <div
       ref={wrapperRef}
       onPointerMove={handlePointerMove}
+      onPointerDown={handlePointerMove}
+      onPointerUp={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
       onPointerLeave={handlePointerLeave}
       className={`${isFullWidth ? "flex w-full" : "inline-flex"} transition-transform duration-300 ease-out will-change-transform`}
     >

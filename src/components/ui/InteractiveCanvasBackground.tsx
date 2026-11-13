@@ -265,15 +265,34 @@ export function InteractiveCanvasBackground() {
       drawFrame();
     };
 
+    let touchFadeTimer: ReturnType<typeof setTimeout> | null = null;
+
     const handlePointerMove = (event: PointerEvent) => {
-      if (event.pointerType === "mouse") {
-        pointer.x = event.clientX;
-        pointer.y = event.clientY;
-        pointer.active = true;
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.active = true;
+
+      if (event.pointerType === "touch" || event.pointerType === "pen") {
+        if (touchFadeTimer) {
+          clearTimeout(touchFadeTimer);
+        }
+        touchFadeTimer = setTimeout(() => {
+          pointer.active = false;
+        }, 1000);
       }
     };
 
     const handlePointerDown = (event: PointerEvent) => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.active = true;
+
+      if (event.pointerType === "touch" || event.pointerType === "pen") {
+        if (touchFadeTimer) {
+          clearTimeout(touchFadeTimer);
+        }
+      }
+
       if (reducedMotionQuery.matches) {
         return;
       }
@@ -281,8 +300,23 @@ export function InteractiveCanvasBackground() {
         x: event.clientX,
         y: event.clientY,
         radius: 6,
-        alpha: 0.45,
+        alpha: 0.5,
       });
+    };
+
+    const handlePointerUp = (event: PointerEvent) => {
+      if (event.pointerType === "touch" || event.pointerType === "pen") {
+        if (touchFadeTimer) {
+          clearTimeout(touchFadeTimer);
+        }
+        touchFadeTimer = setTimeout(() => {
+          pointer.active = false;
+        }, 550);
+      }
+    };
+
+    const handlePointerLeave = () => {
+      pointer.active = false;
     };
 
     const handleScroll = () => {
@@ -310,6 +344,9 @@ export function InteractiveCanvasBackground() {
     window.addEventListener("resize", resize, { passive: true });
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    window.addEventListener("pointerup", handlePointerUp, { passive: true });
+    window.addEventListener("pointercancel", handlePointerUp, { passive: true });
+    window.addEventListener("pointerleave", handlePointerLeave, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("visibilitychange", handleVisibility);
     reducedMotionQuery.addEventListener("change", handleMotionChange);
@@ -318,9 +355,15 @@ export function InteractiveCanvasBackground() {
       if (frameId) {
         window.cancelAnimationFrame(frameId);
       }
+      if (touchFadeTimer) {
+        clearTimeout(touchFadeTimer);
+      }
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", handlePointerUp);
+      window.removeEventListener("pointerleave", handlePointerLeave);
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("visibilitychange", handleVisibility);
       reducedMotionQuery.removeEventListener("change", handleMotionChange);
