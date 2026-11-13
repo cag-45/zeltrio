@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SocialLogoButtons } from "@/components/brand/SocialLogoButtons";
@@ -6,6 +9,11 @@ import { MagneticLink } from "@/components/ui/MagneticLink";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
 export function Header() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/demos")) {
+    return null;
+  }
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-canvas/80 backdrop-blur-xl">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">

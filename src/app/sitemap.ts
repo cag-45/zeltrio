@@ -45,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: buildAbsoluteUrl("/demos/clinic"),
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: buildAbsoluteUrl("/privacy-policy"),
       lastModified,
       changeFrequency: "yearly",

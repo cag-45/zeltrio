@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { sampleProjectsData } from "@/data/projects";
 import { EditorialImage } from "@/components/brand/EditorialImage";
 import { RevealOnScroll } from "@/components/ui/InteractiveMotion";
@@ -210,26 +211,54 @@ export function SampleProjectsSection() {
                     ))}
                   </div>
 
-                  <MagneticLink
-                    href="/contact?topic=website-audit"
-                    className="btn-gold px-5 py-2.5 text-xs uppercase tracking-wider"
-                  >
-                    <span>Request Free Site Audit</span>
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
+                  <div className="flex flex-wrap items-center gap-3">
+                    {activeProject.demoUrl ? (
+                      <Link
+                        href={activeProject.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-gold inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider shadow-[0_12px_24px_-10px_rgba(224,172,88,0.5)] transition-all hover:scale-[1.02]"
+                      >
+                        <span>Launch Live Demo</span>
+                        <svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                      </Link>
+                    ) : null}
+
+                    <MagneticLink
+                      href="/contact?topic=website-audit"
+                      className="btn-secondary px-5 py-2.5 text-xs uppercase tracking-wider"
                     >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </MagneticLink>
+                      <span>Request Free Site Audit</span>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </MagneticLink>
+                  </div>
                 </div>
               </div>
             </div>

@@ -31,6 +31,7 @@ export const sampleProjectsData: SampleProject[] = [
       "Reference website architecture for a multi-treatment service clinic on desktop and mobile",
     disclaimer:
       "Concept reference build showing our standard architecture and pre-launch lab audit targets — not a fabricated client claim.",
+    demoUrl: "/demos/clinic",
   },
   {
     id: "regional-service-lead-hub",

@@ -83,6 +83,7 @@ export interface SampleProject {
   imagePath: string;
   imageAlt: string;
   disclaimer: string;
+  demoUrl?: string;
 }
 
 export interface ContactSubmissionPayload {

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { BrandLogo } from "@/components/brand/BrandLogo";
@@ -6,6 +9,12 @@ import { SocialLogoButtons } from "@/components/brand/SocialLogoButtons";
 import { MagneticLink } from "@/components/ui/MagneticLink";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/demos")) {
+    return null;
+  }
+
   const currentYear = new Date().getFullYear();
 
   return (
