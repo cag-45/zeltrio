@@ -8,13 +8,11 @@ const rawSiteUrl =
   (process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : undefined) ||
-  "https://zeltrio.com";
+  "https://www.zeltriodigital.online";
 
 const primaryEmail =
-  process.env.CONTACT_EMAIL || "aashraybopparaju15@gmail.com";
-const rawCcEmails =
-  process.env.CONTACT_CC_EMAIL ||
-  "b.rishivarma16@gmail.com,kaushalzz2008@gmail.com";
+  process.env.CONTACT_EMAIL || "contact@zeltriodigital.online";
+const rawCcEmails = process.env.CONTACT_CC_EMAIL || "";
 const ccEmails = rawCcEmails
   .split(",")
   .map((email) => email.trim())
@@ -29,15 +27,16 @@ export const siteConfig = {
   taglineParts: ["Create", "Grow", "Go Digital"] as const,
   taglineText: "Accelerate Your Business Growth",
   description:
-    "Zeltrio Digital Services delivers high speed Website Development, SEO Services, Digital Marketing including Influencer and Creator Launch Journeys, and Business Automation engineered to accelerate your business growth.",
+    "Zeltrio Digital Services delivers high-speed Website Development, SEO Services, Digital Marketing, Creator Launch Journeys, and Business Automation engineered to accelerate your business growth.",
   url: rawSiteUrl.replace(/\/+$/, ""),
   locale: "en_US",
   contactEmail: primaryEmail,
   ccEmail,
   ccEmails,
-  inquiryEmails: [primaryEmail, ...ccEmails] as const,
+  inquiryEmails: (ccEmails.length > 0 ? [primaryEmail, ...ccEmails] : [primaryEmail]) as readonly string[],
   inquiryMailtoHref: `mailto:${primaryEmail}?${ccEmail ? `cc=${encodeURIComponent(ccEmail)}&` : ""}subject=${encodeURIComponent("Project Consultation Inquiry for Zeltrio Digital Services")}`,
   businessCity: process.env.NEXT_PUBLIC_BUSINESS_CITY || "Hyderabad",
+  businessRegion: process.env.NEXT_PUBLIC_BUSINESS_REGION || "Telangana",
   businessCountry: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY || "India",
   logoPath: "/images/zeltrio-logo.jpg",
   heroBackgroundPath: "/images/hero-team-working.jpg",

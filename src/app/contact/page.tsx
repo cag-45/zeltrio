@@ -138,7 +138,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
                 <div className="mt-5 space-y-2 border-t border-rule pt-5 text-sm">
                   <p className="text-xs font-bold tracking-wider uppercase text-muted">
-                    Primary Desk Emails
+                    {siteConfig.inquiryEmails.length > 1
+                      ? "Primary Desk Emails"
+                      : "Primary Desk Email"}
                   </p>
                   {siteConfig.inquiryEmails.map((email) => (
                     <p key={email}>

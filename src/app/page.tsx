@@ -10,14 +10,20 @@ import { CallToActionSection } from "@/components/home/CallToActionSection";
 
 export const metadata: Metadata = buildPageMetadata({
   title:
-    "Zeltrio Digital Services for Websites, SEO, Marketing, and Automation",
-  description: siteConfig.description,
+    "Zeltrio Digital Services | Custom Websites, SEO & Automation",
+  description:
+    "Official site of Zeltrio Digital Services (www.zeltriodigital.online). Fast Next.js websites, search engine optimization, creator platforms, and business automation built for growing firms.",
   path: "/",
   keywords: [
-    "digital agency",
+    "Zeltrio",
+    "Zeltrio Digital",
     "Zeltrio Digital Services",
+    "zeltriodigital.online",
+    "www.zeltriodigital.online",
     "website development agency",
+    "Next.js web development",
     "SEO services",
+    "technical SEO",
     "digital marketing agency",
     "influencer and creator platform",
     "WhatsApp business automation",

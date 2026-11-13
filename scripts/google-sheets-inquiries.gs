@@ -5,7 +5,7 @@
  * 1. Create a new Google Sheet in your Google Drive (e.g. "Zeltrio Client Inquiries").
  * 2. Click Extensions -> Apps Script, replace Code.gs with this script, and save.
  * 3. Click Deploy -> New deployment -> Web app:
- *      - Execute as: Me (aashraybopparaju15@gmail.com)
+ *      - Execute as: Me
  *      - Who has access: Anyone
  * 4. Copy the Web App URL and add it as CONTACT_WEBHOOK_URL in Vercel & .env.local.
  */
@@ -58,10 +58,10 @@ function doPost(e) {
 
     sheet.getRange(rowIndex, 8).setFormula(whatsappFormula);
 
-    var primaryRecipient = payload.primaryEmail || "aashraybopparaju15@gmail.com";
+    var primaryRecipient = payload.primaryEmail || "contact@zeltriodigital.online";
     var ccRecipients = (payload.ccEmails && payload.ccEmails.length)
       ? payload.ccEmails.join(",")
-      : "b.rishivarma16@gmail.com,kaushalzz2008@gmail.com";
+      : "";
 
     var emailSubject = "New Zeltrio Project Inquiry from " + (payload.fullName || "Prospect");
     var emailBody = [
@@ -83,7 +83,7 @@ function doPost(e) {
     MailApp.sendEmail({
       to: primaryRecipient,
       cc: ccRecipients,
-      replyTo: payload.businessEmail || "aashraybopparaju15@gmail.com",
+      replyTo: payload.businessEmail || "contact@zeltriodigital.online",
       subject: emailSubject,
       body: emailBody
     });

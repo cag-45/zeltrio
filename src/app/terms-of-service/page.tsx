@@ -60,6 +60,22 @@ export default function TermsOfServicePage() {
               provided by the client organization or creator.
             </p>
           </div>
+
+          <div className="border-t border-rule pt-6">
+            <h2 className="font-display text-xl font-bold text-ink">
+              Inquiries and Notices
+            </h2>
+            <p className="mt-2">
+              For any legal or formal contract questions, please reach our team directly at{" "}
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="font-semibold text-zeltrio-bright hover:text-gold-bright"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </section>

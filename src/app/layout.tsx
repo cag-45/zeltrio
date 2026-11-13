@@ -45,14 +45,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default:
-      "Zeltrio Digital Services for Websites, SEO, Marketing, and Automation",
-    template: "%s by Zeltrio Digital Services",
+      "Zeltrio Digital Services | Custom Websites, SEO & Automation",
+    template: "%s | Zeltrio Digital Services",
   },
   description: siteConfig.description,
   applicationName: siteConfig.legalName,
   authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
   creator: siteConfig.legalName,
   publisher: siteConfig.legalName,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -68,7 +73,9 @@ export const metadata: Metadata = {
     canonical: siteConfig.url,
   },
   verification: {
-    google: "l3KeYklYLlGSNbSSuYnfRrG-_OQEf9vYTOQc0R9zDmY",
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      "l3KeYklYLlGSNbSSuYnfRrG-_OQEf9vYTOQc0R9zDmY",
   },
   openGraph: {
     type: "website",
@@ -76,14 +83,25 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.legalName,
     title:
-      "Zeltrio Digital Services for Websites, SEO, Marketing, and Automation",
+      "Zeltrio Digital Services | Custom Websites, SEO & Automation",
     description: siteConfig.description,
+    images: [
+      {
+        url: `${siteConfig.url}/images/zeltrio-logo.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Zeltrio Digital Services - Websites, SEO & Automation",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Zeltrio Digital Services for Websites, SEO, Marketing, and Automation",
+      "Zeltrio Digital Services | Custom Websites, SEO & Automation",
     description: siteConfig.description,
+    site: "@zeltrio_agency",
+    creator: "@zeltrio_agency",
+    images: [`${siteConfig.url}/images/zeltrio-logo.jpg`],
   },
 };
 
